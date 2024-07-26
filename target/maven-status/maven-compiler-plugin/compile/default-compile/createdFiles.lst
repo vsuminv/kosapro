@@ -1,0 +1,5 @@
+com\example\jsonviewer\JsonViewerApplication.class
+com\example\jsonviewer\model\CheckResult.class
+com\example\jsonviewer\service\JsonService.class
+com\example\jsonviewer\model\ServerInfo.class
+com\example\jsonviewer\controller\JsonController.class
