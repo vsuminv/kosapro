@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--라이브러리 참조 : Thymeleaf & Thymeleaf Layout -->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!--공통 JS / CSS 영역을 관리하는 환경 영역-->
+<head th:replace="fragment/config :: ConfigFragment">
+    <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">공통 타이틀</title>
+</head>
+<body>
+<!-- header -->
+<th:block th:replace="fragment/header :: HeaderFragment"></th:block>
+<!-- nav  : 메뉴바-->
+<th:block th:replace="fragment/nav :: NavFragment"></th:block>
+<!-- content : 메인 컨텐츠-->
+<th:block th:replace="fragment/main :: MainFragment"></th:block>
+<!-- footer : 푸터 -->
+<th:block th:replace="fragment/footer :: FooterFragment"></th:block>
+</body>
+<!-- js -->
+<th:block layout:fragment="script"></th:block>
+</html>

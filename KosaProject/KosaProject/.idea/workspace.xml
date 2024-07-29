@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8a8ff1c5-ec2f-4f12-b4b7-4c2c7f760315" name="Changes" comment="setting front directory model">
+      <changelist_data name="han" email="131014787+ruukr8080@users.noreply.github.com" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../kosapro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/example/jsonviewer/JsonViewerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/example/jsonviewer/controller/JsonController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/example/jsonviewer/model/CheckResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/example/jsonviewer/model/ServerInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/example/jsonviewer/service/JsonService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/resources/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/resources/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/test/java/com/example/jsonviewer/JsonViewerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/example/jsonviewer/JsonViewerApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/example/jsonviewer/controller/JsonController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/example/jsonviewer/model/CheckResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/example/jsonviewer/model/ServerInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/example/jsonviewer/service/JsonService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT.war.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/classes/com/example/jsonviewer/JsonViewerApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/classes/com/example/jsonviewer/controller/JsonController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/classes/com/example/jsonviewer/model/CheckResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/classes/com/example/jsonviewer/model/ServerInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/classes/com/example/jsonviewer/service/JsonService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/attoparser-2.0.5.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jackson-annotations-2.13.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jackson-core-2.13.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jackson-databind-2.13.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jackson-datatype-jdk8-2.13.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jackson-datatype-jsr310-2.13.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jackson-module-parameter-names-2.13.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jakarta.annotation-api-1.3.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/jul-to-slf4j-1.7.32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/log4j-api-2.17.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/log4j-to-slf4j-2.17.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/logback-classic-1.2.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/logback-core-1.2.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.32.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/snakeyaml-1.29.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-aop-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-beans-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-boot-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-boot-autoconfigure-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-boot-starter-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-boot-starter-json-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-boot-starter-logging-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-boot-starter-thymeleaf-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-boot-starter-web-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-context-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-core-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-expression-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-jcl-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-web-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/spring-webmvc-5.3.14.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/thymeleaf-3.0.14.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/thymeleaf-extras-java8time-3.0.4.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/thymeleaf-spring5-3.0.14.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/json-viewer-1.0-SNAPSHOT/WEB-INF/lib/unbescape-1.1.6.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/m2e-wtp/web-resources/META-INF/maven/com.example/json-viewer/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/m2e-wtp/web-resources/META-INF/maven/com.example/json-viewer/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/surefire-reports/TEST-com.example.jsonviewer.JsonViewerApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/surefire-reports/com.example.jsonviewer.JsonViewerApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/test-classes/com/example/jsonviewer/JsonViewerApplicationTests.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="han &lt;131014787+ruukr8080@users.noreply.github.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2jthUTVxqOK7DvlHkEi5kVGyFF3" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "han",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/개인/projects/인프라진단",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="KosaProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="KosaProject" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringBootDeveloperApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="board.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="exam.Kosademo.SpringBootDeveloperApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a8ff1c5-ec2f-4f12-b4b7-4c2c7f760315" name="Changes" comment="" />
+      <created>1722212295737</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722212295737</updated>
+      <workItem from="1722212296776" duration="201000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="setting front directory model" />
+    <option name="LAST_COMMIT_MESSAGE" value="setting front directory model" />
+  </component>
+</project>

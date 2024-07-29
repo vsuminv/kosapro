@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+/*main*/
+/*main-1row*/
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    border: 1px solid red;
+}
+main .cards {
+    display: flex;
+    gap: 20px;
+    margin: 20px auto;
+}
+main .cards card{
+    border: 1px solid blue;
+    min-width: 410px;
+    height: 300px;
+}
+/*main-2row*/
+.result-list{
+    display: flex;
+    border: solid 1px green;
+}
+
+.result-list-input{
+    margin-left:500px;
+}
+/*main-3row*/
+.result-menu {
+    width: 100%;
+}
+.result-detail {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    scroll-behavior: auto;
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+
+.next-button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 태블릿용 미디어 쿼리 */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .query, .group-by, .aggregations {
+        grid-template-columns: 1fr;
+    }
+
+    .pagination {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* 모바일용 미디어 쿼리 */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        gap: 10px;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

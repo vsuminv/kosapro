@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<heade>
+    <link rel="stylesheet" href="/css/main.css">
+</heade>
+<body>
+<main th:fragment="MainFragment" class="main">
+
+    <div th:replace="fragment/cards :: CardsFragment"></div>
+
+    <div class="result-list">
+        <div class="result-list-input">
+            <input type="text" value="출력할 보고서 샘플 목록">
+            <button>download</button>
+            <button>Delete</button>
+        </div>
+    </div>
+
+
+        <div th:replace="fragment/result :: ResultFragment"></div>
+
+        <div class="pagination">
+            <span></span>
+            <div>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>...</span>
+                <span>200</span>
+            </div>
+        </div>
+
+</main>
+</body>
+</html>
