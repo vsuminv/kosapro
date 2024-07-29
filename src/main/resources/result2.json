@@ -1,6 +1,6 @@
 {
   "Server_Info": {
-    "SW_TYPE": "Linux",
+    "SW_TYPE": "TEST",
     "SW_NM": "CentOS",
     "SW_INFO": "CentOS Linux release 7.9.2009 (Core)",
     "HOST_NM": "localhost.localdomain",
