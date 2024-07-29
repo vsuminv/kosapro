@@ -39,6 +39,10 @@ public class ResultController4 {
             int safeCount = 0;
             int vulnerableCount = 0;
             int otherCount = 0;
+            // 보안 계수
+            int safecnt = 3;
+            int vulnerablecnt = 2;
+            int othercnt = 1;
 
             for (Map<String, Object> item : checkResults) {
                 String category = (String) item.get("Category");
@@ -62,8 +66,6 @@ public class ResultController4 {
                 // 맵에 다시 저장
                 categorizedResults.put(category, itemList);
 
-
-
                 if ("[양호]".equals(status)) {
                     safeCount++;
                 } else if ("[취약]".equals(status)) {
@@ -82,7 +84,16 @@ public class ResultController4 {
             model.addAttribute("otherCount", otherCount);
 
            //양호의 퍼센트 구하기
-            double safePercentage  = (double) safeCount / total * 100;
+            // 양호 * 보안계수
+            int safeTotal = safeCount * safecnt;
+
+            // 취약 * 보안계수
+            int vulnerableTotal = vulnerableCount * vulnerablecnt;
+            // (양호와 취약 ) * 보안계수
+            int secuTotal = safeTotal + vulnerableTotal;
+
+            double safePercentage  =  (double) safeTotal / secuTotal *100 ;
+
             model.addAttribute("safePercentage", safePercentage );
 
         } catch (IOException e) {
