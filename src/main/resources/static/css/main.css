@@ -19,7 +19,17 @@ main .cards {
     gap: 20px;
     margin: 20px auto;
 }
-main .cards card{
+main .cards .card1{
+    border: 1px solid blue;
+    min-width: 410px;
+    height: 300px;
+}
+main .cards .card3{
+    border: 1px solid blue;
+    min-width: 410px;
+    height: 300px;
+}
+main .cards .card2{
     border: 1px solid blue;
     min-width: 410px;
     height: 300px;
@@ -65,11 +75,13 @@ th, td {
     margin-top: 10px;
 }
 
-
-
 .next-button {
     text-align: right;
     margin-top: 20px;
+}
+
+footer p{
+    text-align: center;
 }
 
 button {

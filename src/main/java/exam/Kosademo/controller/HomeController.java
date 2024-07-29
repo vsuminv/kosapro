@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -25,4 +26,11 @@ public class HomeController {
 //            List<DataRow> dataRows = model.addAttribute("dataRows", dataRows);
         return "dashboard";
     }
+
+
+    @GetMapping("/cards")
+    public String cards() {
+        return "fragment/cards";
+    }
+
 }

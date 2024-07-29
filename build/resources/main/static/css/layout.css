@@ -1,9 +1,0 @@
-.header {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-}
-
-footer p{
-    text-align: center;
-}
