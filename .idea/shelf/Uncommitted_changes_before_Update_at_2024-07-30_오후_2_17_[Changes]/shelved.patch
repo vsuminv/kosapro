@@ -1,0 +1,36 @@
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server.port=8081\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+--- a/src/main/resources/application.properties	(revision 6edd29a6daf4162d67192597bfa5c05db811b269)
++++ b/src/main/resources/application.properties	(date 1722316397980)
+@@ -1,2 +1,7 @@
+ server.port=8081
+ 
++aws.s3.bucket.name=kosapro-bucket
++aws.s3.access.key=AKIARRCHWMC6RCABLAYP
++aws.s3.secret.key=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
++cloud.aws.region.static=ap-northeast-2
++spring.autoconfigure.exclude=io.awspring.cloud.autoconfigure.s3.S3AutoConfiguration
+\ No newline at end of file
+Index: src/main/java/exam/Kosademo/controller/ResultController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package exam.Kosademo.controller;\r\n\r\nimport com.fasterxml.jackson.core.type.TypeReference;\r\nimport com.fasterxml.jackson.databind.ObjectMapper;\r\nimport org.springframework.core.io.ClassPathResource;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\nimport java.io.IOException;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\n@Controller\r\n@RequestMapping(\"/api\")\r\npublic class ResultController {\r\n\r\n    // Class-level resource, initialized directly\r\n    private final ClassPathResource resource = new ClassPathResource(\"result2.json\");\r\n\r\n\r\n    // serverInfo 여러개 있을 때\r\n//    @GetMapping(\"/result1\")\r\n//    public String getResultDetail(Model model) {\r\n//        try {\r\n//            // JSON 파일을 읽어와서 Map으로 변환\r\n//            ObjectMapper objectMapper = new ObjectMapper();\r\n//            Map<String, Object> jsonMap = objectMapper.readValue(\r\n//                    resource.getInputStream(),\r\n//                    new TypeReference<Map<String, Object>>() {});\r\n//\r\n//            // JSON 객체에서 'servers' 배열을 추출\r\n//            List<Map<String, Object>> serverInfoList = (List<Map<String, Object>>) jsonMap.get(\"Server_Info\");\r\n//\r\n//            // 모델에 serverInfoList 추가\r\n//            model.addAttribute(\"serverInfoList\", serverInfoList);\r\n//\r\n//        } catch (IOException e) {\r\n//            e.printStackTrace();\r\n//        }\r\n//\r\n//        return \"resultTarget\";\r\n//    }\r\n\r\n    @GetMapping(\"/result1\")\r\n    public String getResultTarget(Model model) {\r\n        try {\r\n            // ObjectMapper를 사용하여 JSON을 Java Map 객체로 변환\r\n            ObjectMapper objectMapper = new ObjectMapper();\r\n            Map<String, Object> jsonMap = objectMapper.readValue(resource.getInputStream(), new TypeReference<Map<String, Object>>() {});\r\n\r\n            // JSON 객체에서 'Server_Info' 객체를 추출\r\n            Map<String, Object> serverInfoMap = (Map<String, Object>) jsonMap.get(\"Server_Info\");\r\n\r\n            // 모델에 serverInfoMap 추가\r\n            model.addAttribute(\"serverInfo\", serverInfoMap);\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        return \"resultTarget\";\r\n    }\r\n\r\n\r\n\r\n    @GetMapping(\"/result5\")\r\n    public String getResultDetail(Model model) {\r\n        try {\r\n            // ObjectMapper를 사용하여 JSON을 Java Map 객체로 변환\r\n            ObjectMapper objectMapper = new ObjectMapper();\r\n            Map<String, Object> jsonMap = objectMapper.readValue(resource.getInputStream(), new TypeReference<Map<String, Object>>() {});\r\n\r\n            Map<String, Object> serverInfoMap = (Map<String, Object>) jsonMap.get(\"Server_Info\");\r\n            model.addAttribute(\"serverInfo\", serverInfoMap);\r\n\r\n            // Check_Results 리스트 가져오기\r\n            List<Map<String, Object>> checkResults = (List<Map<String, Object>>) jsonMap.get(\"Check_Results\");\r\n\r\n            // 각 Check_Result에 Server_Info 추가\r\n            for (Map<String, Object> item : checkResults) {\r\n                item.put(\"Server_Info\", serverInfoMap);\r\n            }\r\n\r\n            // 모델에 Check_Results 추가\r\n            model.addAttribute(\"checkResults\", checkResults);\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        return \"resultDetail\";\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/exam/Kosademo/controller/ResultController.java b/src/main/java/exam/Kosademo/controller/ResultController.java
+--- a/src/main/java/exam/Kosademo/controller/ResultController.java	(revision 6edd29a6daf4162d67192597bfa5c05db811b269)
++++ b/src/main/java/exam/Kosademo/controller/ResultController.java	(date 1722248818092)
+@@ -92,6 +92,4 @@
+ 
+         return "resultDetail";
+     }
+-
+-
+ }
