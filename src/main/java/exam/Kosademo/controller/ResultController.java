@@ -64,7 +64,6 @@ public class ResultController {
     }
 
 
-
     @GetMapping("/result5")
     public String getResultDetail(Model model) {
         try {
