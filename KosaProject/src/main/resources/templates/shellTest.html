@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 생성</title>
+</head>
+<body>
+<h1>서버 JSON 생성</h1>
+
+<!-- JSON 생성 및 S3 업로드 버튼 -->
+<form th:action="@{/api/json}" method="get">
+    <button type="submit">JSON 생성 및 S3 업로드</button>
+</form>
+
+<!-- 결과 메시지를 보여줄 부분 -->
+<div>
+    <p th:if="${successMessage}" th:text="${successMessage}"></p>
+    <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+</div>
+</body>
+</html>
