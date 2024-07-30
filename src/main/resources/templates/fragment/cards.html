@@ -1,21 +1,16 @@
 <div th:fragment="CardsFragment" class="cards">
     <card class="card1">
         <canvas id="card1Chart"></canvas>
-        <h1>원 그래프</h1>
+
     </card>
     <card class="card2">
+        <span id="goodCount"></span>
+        <span id="vulnerableCount"></span>
+        <span id="interviewCount"></span>
+        <span id="naCount"></span>
         <canvas id="card2Chart"></canvas>
-        <p>진단 상태 양호: <span id="goodCount"></span>개</p>
-        <p>취약: <span id="vulnerableCount"></span>개</p>
-        <p>인터뷰 필요: <span id="interviewCount"></span>개</p>
-        <p>N/A: <span id="naCount"></span>개</p>
-        <h1>막대 그래프</h1>
     </card>
     <card class="card3">
         <canvas id="card3Chart"></canvas>
-        <h1>레이더 차트</h1>
-        <p>계정 관리</p>
-        <p>로그 관리</p>
-        <p>파일 및 디렉토리 관리</p>
     </card>
 </div>

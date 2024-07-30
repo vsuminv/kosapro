@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // card1Chart 생성
+    // card1Char 원 그래프
     var ctx1 = document.getElementById('card1Chart').getContext('2d');
     var card1Chart = new Chart(ctx1, {
         type: 'pie',
@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // card2Chart 생성 (막대 그래프)
+    // card2Chart 생성 (도넛 그래프)
     var ctx2 = document.getElementById('card2Chart').getContext('2d');
     var card2Chart = new Chart(ctx2, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
             labels: ['양호', '취약', '인터뷰 필요', 'N/A'],
             datasets: [{
@@ -47,10 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    precision: 0
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: '점검 요약'
                 }
             }
         }
@@ -61,10 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var card3Chart = new Chart(ctx3, {
         type: 'radar',
         data: {
-            labels: ['계정 관리', '로그 관리', '파일 및 디렉토리 관리'],
+            labels: ['계정 관리', '로그 관리', '파일 관리','#1','#2','#3'],
             datasets: [{
-                label: '영역별 점수',
-                data: [80, 90, 70],
+                data: [80, 90, 70, 90,40,40],
                 fill: true,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgb(255, 99, 132)',
@@ -76,13 +78,25 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false // 상단 레이블 숨기기
+                },title: {
+                    display: true,
+                    text: ''
+                }
+            },
             scales: {
                 r: {
                     angleLines: {
-                        display: false
+                        display: false,
                     },
                     suggestedMin: 0,
-                    suggestedMax: 100
+                    suggestedMax: 100,
+                    ticks: {
+                        display: false
+                    }
                 }
             }
         }
