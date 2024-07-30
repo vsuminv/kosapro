@@ -11,6 +11,8 @@
     <output-test url="file://$MODULE_DIR$/../../KosaProject/KosaProject/build/classes/java/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../KosaProject/KosaProject/src/test" />
+    <content url="file://$MODULE_DIR$/../../KosaProject/KosaProject/src/test" />
+    <content url="file://$MODULE_DIR$/../../KosaProject/KosaProject/src/test" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="board.main" />
