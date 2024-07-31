@@ -1,11 +1,7 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Server Information</title>
-    <link th:href="@{/css/main.css}" rel="stylesheet" />
-</head>
-<body>
-    <div class = "main_container">
+<div th:fragment="TargetFragment">
+
+<div class = "main_container">
         <div class="main_to">메인</div>
         <div class = "main"></div>
     </div>
@@ -20,5 +16,4 @@
         <li>IP_ADDRESS: <span th:text="${serverInfo['IP_ADDRESS']}"></span></li>
         <li>UNIQ_ID: <span th:text="${serverInfo['UNIQ_ID']}"></span></li>
     </ul>
-</body>
-</html>
+</div>>

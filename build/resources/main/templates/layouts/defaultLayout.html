@@ -12,10 +12,21 @@
 <th:block th:replace="fragment/header :: HeaderFragment"></th:block>
 <!-- nav  : 메뉴바-->
 <th:block th:replace="fragment/nav :: NavFragment"></th:block>
-<!-- content : 메인 컨텐츠-->
+<!-- content : 메인 컨테이너-->
 <th:block th:replace="fragment/main :: MainFragment"></th:block>
 <!-- footer : 푸터 -->
 <th:block th:replace="fragment/footer :: FooterFragment"></th:block>
+
+<!--&lt;!&ndash;resultDetail &ndash;&gt;-->
+<!--<th:block th:replace="content/resultDetail :: DetailFragment"></th:block>-->
+<!--&lt;!&ndash;resultGra  &ndash;&gt;-->
+<!--<th:block th:replace="content/resultGra :: GraFragment"></th:block>-->
+<!--&lt;!&ndash;resultSecurity  &ndash;&gt;-->
+<!--<th:block th:replace="content/resultSecurity :: SecurityFragment"></th:block>-->
+<!--&lt;!&ndash; resultTarget &ndash;&gt;-->
+<!--<th:block th:replace="content/resultTarget :: TargetFragment"></th:block>-->
+<!--&lt;!&ndash;  &ndash;&gt;-->
+
 </body>
 <!-- js -->
 <th:block layout:fragment="script"></th:block>

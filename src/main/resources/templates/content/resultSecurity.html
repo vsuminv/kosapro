@@ -1,26 +1,8 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Result Details</title>
-    <style>
-        /* 테이블 스타일 설정 */
-        table {
-            width: 100%; /* 테이블 너비를 100%로 설정 */
-            border-collapse: collapse; /* 테이블 셀 간의 간격을 없앰 */
-        }
-        th, td {
-            border: 1px solid #dddddd; /* 테이블 셀의 테두리를 설정 */
-            text-align: center; /* 텍스트를 중앙 정렬 */
-            padding: 8px; /* 셀 안의 패딩을 설정 */
-        }
-        th {
-            background-color: #f2f2f2; /* 테이블 헤더의 배경색을 설정 */
-        }
-    </style>
-</head>
-<body>
+<div th:fragment="SecurityFragment">
+
+
+
     <!-- 서버 정보를 표시하는 섹션 -->
     <h1>서버 정보</h1>
     <ul>
@@ -68,5 +50,4 @@
             </tr>
         </tfoot>
     </table>
-</body>
-</html>
+</div>

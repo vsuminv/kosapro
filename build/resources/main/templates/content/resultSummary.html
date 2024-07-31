@@ -1,11 +1,6 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Result Details</title>
-</head>
-<body>
+<div th:fragment="SummaryFragment">
+
 <h1>Server Information</h1>
 <ul>
     <li>SW_TYPE: <span th:text="${serverInfo['SW_TYPE']}"></span></li>
@@ -40,5 +35,4 @@
     <li>Others: <span th:text="${otherCount}"></span></li>
     <li>Safe Percentage: <span th:text="${#numbers.formatDecimal(safePercentage, 0, 2)} + '%'"></span></li>
 </ul>
-</body>
-</html>
+</div>>

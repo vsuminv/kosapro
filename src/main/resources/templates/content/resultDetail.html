@@ -1,9 +1,6 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>인프라 진단</title>
-</head>
-<body>
+<div th:fragment="DetailFragment">
+
 <h1>진단 상세</h1>
 <ul>
     <li th:each="result : ${checkResults}">
@@ -33,5 +30,4 @@
         </div>
     </li>
 </ul>
-</body>
-</html>
+</div>
