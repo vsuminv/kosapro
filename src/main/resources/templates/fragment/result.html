@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</head>
-<body>
 <div th:fragment="ResultFragment" class="result">
-    <div class="result-menu">
-        <table>
-            <thead>
-            <tr>
-                <th><button><a href="http://localhost:8081/api/result1"> {model} resultTarget</a></button></th>
-                <th><button><a href="http://localhost:8081/api/result2"> {model} resultGra</a></button></th>
-                <th><button><a href="http://localhost:8081/api/result3"> {model} resultSecurity</a></button></th>
-                <th><button><a href="http://localhost:8081/api/result4"> {model} resultSummary</a></button></th>
-                <th><button><a href="http://localhost:8081/api/result5"> {model} resultDetail</a></button></th>
-            </tr>
-            </thead>
-        </table>
-    </div>
 
-        <h1>진단 상세( 매핑돼있음) </h1>
-    <div th:replace="fragment/cards :: CardsFragment"></div>
 
 </div>
-<div th:replace="content/resultTarget :: TargetFragment"></div>
 
-</body>
-</html>

@@ -94,6 +94,6 @@ public class ResultController3 {
         }
 
         // 결과를 표시할 뷰의 이름을 반환합니다.
-        return "content/resultSecurity";
+        return "pages/securityPage";
     }
 }

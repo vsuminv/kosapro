@@ -168,38 +168,33 @@ body {
 /*main-1row*/
 main {
     border: 9px solid #f0f0f0;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
     gap: 20px;
-    max-width: 1300px;
+    max-width: 300vh;
     margin-left: 230px;
+    height: 90vh;
 }
-main .cards {
+.cards {
     display: flex;
     gap: 20px;
     margin: 20px auto;
     max-width: 1300px;
     height: 550px;
 }
-main .cards .card1 {
+.cards .card1 {
     min-width: 410px;
     height: 410px;
     width: 100%;
 }
-main .cards .card2{
+.cards .card2{
     min-width: 410px;
     height: 410px;
 }
-main .cards .card3 {
+.cards .card3 {
     min-width: 410px;
     height: 410px;
     vertical-align: bottom;
 }
-#card2Chart{
-    vertical-align: bottom;
 
-}
 /*main-2row*/
 .result-list{
     display: flex;
@@ -263,9 +258,16 @@ button:hover {
 }
 
 
-
-
-
+/*home*/
+.login{
+    margin-top:50px;
+}
+.video{
+    margin-top: 50px;
+}
+video{
+    min-height: 440px;
+}
 /* 테이블 스타일 설정 */
 table {
      width: 100%; /* 테이블 너비를 100%로 설정 */
@@ -279,10 +281,21 @@ th, td {
 th {
     background-color: #f2f2f2; /* 테이블 헤더의 배경색을 설정 */
 }
-
-
-
-
+.row1-cols1{
+    min-height: 300px;
+    max-height: 310px;
+}
+.row1-cols2{
+    min-height: 300px;
+    max-height: 310px;
+}
+.row1-cols3{
+    min-height: 300px;
+    max-height: 310px;
+}
+.col-span-3 {
+    overflow: scroll;
+}
 /* 태블릿용 미디어 쿼리 */
 @media screen and (max-width: 768px) {
     .container {
@@ -298,7 +311,9 @@ th {
         align-items: flex-start;
     }
 }
-
+.home{
+    background: red;
+}
 /* 모바일용 미디어 쿼리 */
 @media screen and (max-width: 480px) {
     body {
