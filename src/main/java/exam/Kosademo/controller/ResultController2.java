@@ -21,7 +21,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("/api")
-@Tag(name = "Result Controller 2", description = "결과 데이터 처리 및 시각화")
+@Tag(name = "Result Controller 2", description = "결과 데이터 처리 및 view 응답 ")
 public class ResultController2 {
     private static final Logger logger = LoggerFactory.getLogger(ResultController2.class);
     private final ClassPathResource resource = new ClassPathResource("result2.json");
