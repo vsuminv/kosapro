@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeController {
     @GetMapping("/")
-    public String getHomeTarget() {
+    public String home() {
         return "pages/home";
     }
 
@@ -27,10 +27,5 @@ public class HomeController {
         return "dashboard";
     }
 
-
-    @GetMapping("/cards")
-    public String cards() {
-        return "fragment/cards";
-    }
 
 }

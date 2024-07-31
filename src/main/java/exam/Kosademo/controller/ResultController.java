@@ -14,6 +14,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/api")
+
 public class ResultController {
 
     // Class-level resource, initialized directly
@@ -59,8 +60,7 @@ public class ResultController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return "content/resultTarget";
+        return "pages/targetPage";
     }
 
 
@@ -89,9 +89,6 @@ public class ResultController {
             e.printStackTrace();
         }
 
-        return "content/resultDetail";
+        return "pages/detailPage";
     }
-
-
-
 }

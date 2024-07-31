@@ -89,6 +89,6 @@ public class ResultController4 {
             e.printStackTrace();
         }
 
-        return "content/resultSummary";
+        return "pages/summaryPage";
     }
 }
