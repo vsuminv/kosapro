@@ -43,7 +43,7 @@ public class ResultController {
 //        return "resultTarget";
 //    }
 
-    @GetMapping("/result1")
+    @GetMapping("/resultTarget")
     public String getResultTarget(Model model) {
         try {
             // ObjectMapper를 사용하여 JSON을 Java Map 객체로 변환
@@ -60,11 +60,11 @@ public class ResultController {
             e.printStackTrace();
         }
 
-        return "resultTarget";
+        return "content/resultTarget";
     }
 
 
-    @GetMapping("/result5")
+    @GetMapping("/resultDetail")
     public String getResultDetail(Model model) {
         try {
             // ObjectMapper를 사용하여 JSON을 Java Map 객체로 변환
@@ -89,8 +89,9 @@ public class ResultController {
             e.printStackTrace();
         }
 
-        return "resultDetail";
+        return "content/resultDetail";
     }
+
 
 
 }

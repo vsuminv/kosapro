@@ -27,7 +27,7 @@ public class ResultController3 {
      * "/result3" 경로로 GET 요청이 들어왔을 때 호출되는 메소드입니다.
      * JSON 파일을 읽어와 그 내용을 가공하여 모델에 추가합니다.
      */
-    @GetMapping("/result3")
+    @GetMapping("/resultSecurity")
     public String getResultDetail(Model model) {
         try {
             // ObjectMapper를 사용하여 JSON 파일을 읽어옵니다.
@@ -94,6 +94,6 @@ public class ResultController3 {
         }
 
         // 결과를 표시할 뷰의 이름을 반환합니다.
-        return "resultSecurity";
+        return "content/resultSecurity";
     }
 }

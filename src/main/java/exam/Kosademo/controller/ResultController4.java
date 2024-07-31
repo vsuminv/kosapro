@@ -16,7 +16,7 @@ import java.util.*;
 public class ResultController4 {
     private final ClassPathResource resource = new ClassPathResource("result2.json");
 
-    @GetMapping("/result4")
+    @GetMapping("/resultSummary")
     public String getResultDetail(Model model) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -89,6 +89,6 @@ public class ResultController4 {
             e.printStackTrace();
         }
 
-        return "resultSummary";
+        return "content/resultSummary";
     }
 }

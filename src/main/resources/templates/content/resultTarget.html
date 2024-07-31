@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Server Information</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
 <body>
-<th:block th:fragment="ResultTarget">
-    <div class="main_container">
+    <div class = "main_container">
         <div class="main_to">메인</div>
-        <div class="main"></div>
+        <div class = "main"></div>
     </div>
-    <h1>Server Information</h1>
+    <h1 >Server Information</h1>
     <ul>
         <li>SW_TYPE: <span th:text="${serverInfo['SW_TYPE']}"></span></li>
         <li>SW_NM: <span th:text="${serverInfo['SW_NM']}"></span></li>
@@ -17,6 +20,5 @@
         <li>IP_ADDRESS: <span th:text="${serverInfo['IP_ADDRESS']}"></span></li>
         <li>UNIQ_ID: <span th:text="${serverInfo['UNIQ_ID']}"></span></li>
     </ul>
-</th:block>
 </body>
 </html>
