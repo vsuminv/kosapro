@@ -60,7 +60,7 @@ public class ResultController {
             e.printStackTrace();
         }
 
-        return "resultTarget";
+        return "content/resultTarget";
     }
 
 
