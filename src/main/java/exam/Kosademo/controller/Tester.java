@@ -2,34 +2,26 @@ package exam.Kosademo.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-/**
- * ResultController2 클래스는 "/api" 경로로 들어오는 요청을 처리하는 컨트롤러입니다.
- * 주로 result2.json 파일을 읽어와 그 내용을 가공하여 모델에 추가하는 역할을 합니다.
- */
 @Controller
-@RequestMapping("/api")
-public class ResultController2 {
+public class Tester {
     private static final Logger logger = LoggerFactory.getLogger(ResultController2.class);
     private final ClassPathResource resource = new ClassPathResource("result2.json");
 
-    /**
-     * "/result2" 경로로 GET 요청이 들어왔을 때 호출되는 메소드입니다.
-     * JSON 파일을 읽어와 그 내용을 가공하여 모델에 추가합니다.
-     */
-
-    @GetMapping("/resultGra")
-    public String getResultDetail(Model model) {
+    @GetMapping("/dd")
+    public String test(Model model) {
         try {
             // ObjectMapper를 사용하여 JSON 파일을 읽어옵니다.
             ObjectMapper objectMapper = new ObjectMapper();
@@ -88,17 +80,16 @@ public class ResultController2 {
             model.addAttribute("categorizedResults", categorizedResults);
             model.addAttribute("categorySecurityIndices", categorySecurityIndices);
             model.addAttribute("overallSecurityIndex", overallSecurityIndex);
+            model.addAttribute("ds");
 
             // 카테고리별 보안 지수를 JSON 형식으로 변환하여 모델에 추가합니다.
             String categorySecurityIndicesJson = objectMapper.writeValueAsString(categorySecurityIndices);
             model.addAttribute("categorySecurityIndicesJson", categorySecurityIndicesJson);
 
         } catch (IOException e) {
-            // JSON 파일을 읽는 도중 에러가 발생하면 로그에 에러 메시지를 출력합니다.
-            logger.error("Error reading JSON file", e);
+            logger.error("제이슨 못읽음", e);
         }
-
-        // 결과를 표시할 뷰의 이름을 반환합니다.
-        return "pages/graPage";
+        return "pages/mainPage";
     }
+
 }
