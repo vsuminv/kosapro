@@ -91,12 +91,10 @@ public class ResultController2 {
             // 카테고리별 보안 지수를 JSON 형식으로 변환하여 모델에 추가합니다.
             String categorySecurityIndicesJson = objectMapper.writeValueAsString(categorySecurityIndices);
             model.addAttribute("categorySecurityIndicesJson", categorySecurityIndicesJson);
-
         } catch (IOException e) {
             // JSON 파일을 읽는 도중 에러가 발생하면 로그에 에러 메시지를 출력합니다.
             logger.error("Error reading JSON file", e);
         }
-
         // 결과를 표시할 뷰의 이름을 반환합니다.
         return "pages/graPage";
     }

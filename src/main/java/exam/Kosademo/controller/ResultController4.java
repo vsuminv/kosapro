@@ -2,6 +2,8 @@ package exam.Kosademo.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import java.util.*;
 @RequestMapping("/api")
 public class ResultController4 {
     private final ClassPathResource resource = new ClassPathResource("result2.json");
+    private static final Logger logger = LoggerFactory.getLogger(ResultController2.class);
 
     @GetMapping("/resultSummary")
     public String getResultDetail(Model model) {
