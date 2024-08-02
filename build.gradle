@@ -25,10 +25,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-
     // json
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
-
 
     // 타임리프
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
