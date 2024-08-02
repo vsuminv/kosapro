@@ -21,7 +21,7 @@ public class ResultController {
 
     // Class-level resource, initialized directly
     private final ClassPathResource resource = new ClassPathResource("result2.json");
-    private static final Logger logger = LoggerFactory.getLogger(ResultController2.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResultController.class);
 
 
     // serverInfo 여러개 있을 때

@@ -17,7 +17,7 @@ import java.util.*;
 @RequestMapping("/api")
 public class ResultController4 {
     private final ClassPathResource resource = new ClassPathResource("result2.json");
-    private static final Logger logger = LoggerFactory.getLogger(ResultController2.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResultController4.class);
 
     @GetMapping("/resultSummary")
     public String getResultDetail(Model model) {

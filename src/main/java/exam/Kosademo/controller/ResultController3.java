@@ -78,10 +78,10 @@ public class ResultController3 {
             double overallSecurityIndex = overallTotal == 0 ? 0.0 : (double) totalSafe / overallTotal * 100;
 
             // 로그를 통해 계산된 정보를 출력합니다.
-            logger.info("Server Info: {}", serverInfoMap);
-            logger.info("Categorized Results: {}", categorizedResults);
-            logger.info("Category Security Indices: {}", categorySecurityIndices);
-            logger.info("Overall Security Index: {}", overallSecurityIndex);
+            logger.info("3컨 서버인포: {}", serverInfoMap);
+            logger.info("3컨 카테고리인포: {}", categorizedResults);
+            logger.info("3컨 보안지수: {}", categorySecurityIndices);
+            logger.info("3컨 보안지수총합: {}", overallSecurityIndex);
 
             // 모델에 각 정보를 추가합니다.
             model.addAttribute("categorizedResults", categorizedResults);

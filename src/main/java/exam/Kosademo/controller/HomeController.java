@@ -20,12 +20,6 @@ public class HomeController {
         return "pages/home";
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard(Model model) {
-        // 데이터1
-//            List<DataRow> dataRows = model.addAttribute("dataRows", dataRows);
-        return "dashboard";
-    }
 
 
 }

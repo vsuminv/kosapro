@@ -17,7 +17,7 @@ import java.util.TreeMap;
 
 @Controller
 public class Tester {
-    private static final Logger logger = LoggerFactory.getLogger(ResultController2.class);
+    private static final Logger logger = LoggerFactory.getLogger(Tester.class);
     private final ClassPathResource resource = new ClassPathResource("result2.json");
 
     @GetMapping("/dd")
@@ -71,10 +71,10 @@ public class Tester {
             double overallSecurityIndex = overallTotal == 0 ? 0.0 : (double) totalSafe / overallTotal * 100;
 
             // 로그를 통해 계산된 정보를 출력합니다.
-            logger.info("Server Info: {}", serverInfoMap);
-            logger.info("Categorized Results: {}", categorizedResults);
-            logger.info("Category Security Indices: {}", categorySecurityIndices);
-            logger.info("Overall Security Index: {}", overallSecurityIndex);
+            logger.info("서버 : {}", serverInfoMap);
+            logger.info("카테고리: {}", categorizedResults);
+            logger.info("보안지수: {}", categorySecurityIndices);
+            logger.info("종합보안수준: {}", overallSecurityIndex);
 
             // 모델에 각 정보를 추가합니다.
             model.addAttribute("categorizedResults", categorizedResults);
@@ -87,7 +87,7 @@ public class Tester {
             model.addAttribute("categorySecurityIndicesJson", categorySecurityIndicesJson);
 
         } catch (IOException e) {
-            logger.error("제이슨 못읽음", e);
+            logger.error("제이슨 읽는거 실패함", e);
         }
         return "pages/mainPage";
     }
