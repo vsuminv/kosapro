@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.6'
+    id("com.github.node-gradle.node") version "7.0.1"
 }
 
 
@@ -37,7 +38,19 @@ dependencies {
     //Swagger UI
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 }
+node {
+    download = true
+    /**
+     * node version
+     */
+    version = "20.16.0"
 
+    /**
+     * npm version
+     */
+    npmVersion = "10.8.1"
+    nodeProjectDir = file("${projectDir}/src/main/resources/static")
+}
 test {
     useJUnitPlatform()
 }

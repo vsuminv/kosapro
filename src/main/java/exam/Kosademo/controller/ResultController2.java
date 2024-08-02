@@ -27,6 +27,7 @@ public class ResultController2 {
      * "/result2" 경로로 GET 요청이 들어왔을 때 호출되는 메소드입니다.
      * JSON 파일을 읽어와 그 내용을 가공하여 모델에 추가합니다.
      */
+
     @GetMapping("/resultGra")
     public String getResultDetail(Model model) {
         try {
