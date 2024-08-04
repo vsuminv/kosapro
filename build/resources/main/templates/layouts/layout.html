@@ -1,0 +1,15 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<div th:insert="~{layouts/head :: Head}"></div>
+<body class="flex flex-col w-full min-h-screen bg-muted/40">
+<main class="flex-1 p-4 md:p-8 grid gap-8">
+<header th:insert="~{layouts/header :: Header}"></header>
+<section th:insert="~{layouts/section1 :: Section1}"></section>
+<section th:insert="~{layouts/section2 :: Section2}"></section>
+<section th:insert="~{layouts/section3 :: Section3}"></section>
+<section th:insert="~{layouts/section4 :: Section4}"></section>
+</main>
+<script th:src="@{/js/scrolbar.js}"></script>
+</body>
+</html>
