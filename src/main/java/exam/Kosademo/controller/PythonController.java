@@ -1,5 +1,6 @@
 package exam.Kosademo.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Controller
+@Tag(name = "PythonController", description = "파이선 작동")
 public class PythonController {
 
     @GetMapping("/run-python")
