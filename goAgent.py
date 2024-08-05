@@ -20,7 +20,7 @@ def start_agent():
         
         # SFTP 클라이언트 초기화
         sftp = ssh.open_sftp()
-        sftp.put("CentOS6.sh", "agent.sh")
+        sftp.put("agent.sh", "agent.sh")
 
         # 명령
         channel = ssh.invoke_shell()
