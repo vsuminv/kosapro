@@ -17,11 +17,9 @@ def start_agent():
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(ip_address, port=port, username=username, password=password)
-        
         # SFTP 클라이언트 초기화
         sftp = ssh.open_sftp()
         sftp.put("agent.sh", "agent.sh")
-
         # 명령
         channel = ssh.invoke_shell()
         channel.send('cd ~\n')
@@ -39,10 +37,9 @@ def start_agent():
         channel.send('y\n')
         output = channel.recv(1024).decode()
         messagebox.showinfo("Command Output", output)
-
         sftp.close()
         ssh.close()
-        
+        #결과파일 이름 재설정
         jsonfile_rename()
         messagebox.showinfo("Success", "Agent works successfully!")
     except Exception as e:
