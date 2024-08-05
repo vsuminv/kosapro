@@ -1,4 +1,4 @@
-package exam.Kosademo.controller.service;
+package exam.Kosademo.service;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

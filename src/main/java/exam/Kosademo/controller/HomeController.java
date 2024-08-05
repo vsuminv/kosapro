@@ -4,8 +4,6 @@ package exam.Kosademo.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,25 +20,21 @@ import java.util.*;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@Tag(name = "Controller", description = "API 명세서")
+@Tag(name = "Controller", description = "API 명세서") //http://localhost:8081/swagger-ui/index.html
 public class HomeController {
     private final ClassPathResource resource = new ClassPathResource("result2.json");
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/")
-    @Operation(summary = "get Server info", description = "result2파일 읽고 section별로 담아 뿌림")
-    @ApiResponses(value = {
-            @ApiResponse(),
-            @ApiResponse(responseCode = "500", description = "내부 서버 문제임")
-    })
+    @Operation(summary = "resource/objectMapper", description = "serverInfoMap , checkResults , categorizedResults , categorySecurity , allSecurity , report")
     public String getData(Model model) throws IOException {
         Map<String, Object> jsonMap = objectMapper.readValue(resource.getInputStream(), new TypeReference<Map<String, Object>>() {
         });
         Map<String, Object> serverInfoMap = (Map<String, Object>) jsonMap.get("Server_Info");
         List<Map<String, Object>> checkResults = (List<Map<String, Object>>) jsonMap.get("Check_Results");
 
-        // 진단결과에서 항목,상태만 저장하는 맵
+        // checkResults 에서 항목,상태만 뽑은 맵
         Map<String, Map<String, Integer>> categorizedResults = new TreeMap<>();
         for (Map<String, Object> item : checkResults) {
             String category = (String) item.get("Category");
@@ -49,7 +43,7 @@ public class HomeController {
             stats.put(status, stats.getOrDefault(status, 0) + 1);
             categorizedResults.put(category, stats);
         }
-        // 아이템별 안정성
+        // 개별 안정성
         Map<String, Double> categorySecurity = new TreeMap<>();
         for (String category : categorizedResults.keySet()) {
             Map<String, Integer> stats = categorizedResults.get(category);
@@ -80,7 +74,7 @@ public class HomeController {
         //section2
         Map<String, Object> section2 = new HashMap<>();
         section2.put("Category", serverInfoMap.get("Category"));
-        section2.put("Importance", serverInfoMap.get("Category"));
+        section2.put("Importance", serverInfoMap.get("Importance"));
         section2.put("status", serverInfoMap.get("status"));
         section2.put("Sub_Category", serverInfoMap.get("Sub_Category"));
         //section3
@@ -99,25 +93,21 @@ public class HomeController {
         //section4
         String report = "업로드 공간";
 
-        model.addAttribute("report", report);
-        logger.info("section4: {}", report);
-        model.addAttribute("section3", section3);
-        logger.info("section3: {}", section3);
         model.addAttribute("section1", section1);
         logger.info("section1 : {}", section1);
         model.addAttribute("section2", section2);
         logger.info("section2 : {}", section2);
-        model.addAttribute("serverInfo", serverInfoMap);
-        logger.info("진단 서버: {}", serverInfoMap);
+        model.addAttribute("section3", section3);
+        logger.info("section3 : {}", section3);
         model.addAttribute("checkResults", checkResults);
         logger.info("진단 결과: {}", checkResults);
         model.addAttribute("categorizedResults", categorizedResults);
-        logger.info("항목별 상태: {}", categorizedResults);
+//        logger.info("항목별 상태: {}", categorizedResults);
         model.addAttribute("categorySecurity", categorySecurity);
         logger.info("개별 보안: {}", categorySecurity);
         model.addAttribute("allSecurity", allSecurity);
-        logger.info("서버 보안: {}", allSecurity);
+        logger.info("서버 보안: {}%", allSecurity);
 
-        return "pages/myMain";
+        return "pages/main";
     }
 }

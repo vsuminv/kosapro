@@ -2,7 +2,8 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.6'
-    id("com.github.node-gradle.node") version "7.0.1"
+    id 'com.github.node-gradle.node' version "7.0.1"
+    id 'base'
 }
 
 
@@ -35,6 +36,9 @@ dependencies {
 
     //Swagger UI
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+
+    // tailwind
+    implementation 'org.webjars.npm:tailwindcss:3.4.7'
 }
 node {
     download = true
@@ -49,6 +53,15 @@ node {
     npmVersion = "10.8.1"
     nodeProjectDir = file("${projectDir}/src/main/resources/static")
 }
+task installTailwind(type: NpmTask) {
+    args = ['install', 'tailwindcss']
+}
+
+task buildTailwindCss(type: Exec) {
+    commandLine 'npx', 'tailwindcss', 'build', './src/main/resources/static/styles/input.css', '-o', './src/main/resources/static/styles/output.css'
+}
 test {
     useJUnitPlatform()
 }
+processResources.dependsOn buildTailwindCss
+buildTailwindCss.dependsOn installTailwind
