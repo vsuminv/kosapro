@@ -1,23 +1,28 @@
 package exam.Kosademo.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+@Slf4j
 @Controller
 @Tag(name = "PythonController", description = "파이선 작동")
-public class PythonController {
+public class PythonController  {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping("/run-python")
-    public ResponseEntity<InputStreamResource> runPythonScript() {
+    @PostMapping("/run-python")
+    public ResponseEntity<InputStreamResource> runPythonScript() throws IOException{
+
         try {
             // Python 스크립트 실행
             ProcessBuilder processBuilder = new ProcessBuilder("python", "C:/Spring/project/KosaProject/src/main/resources/static/make_result.py");
@@ -59,5 +64,6 @@ public class PythonController {
             e.printStackTrace();
             return ResponseEntity.status(500).body(new InputStreamResource(new ByteArrayInputStream(e.getMessage().getBytes())));
         }
+//        logger.info("dd",);
     }
 }
