@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,8 +62,6 @@ public class HomeController {
         int overallTotal = totalSafe + totalVulnerable + totalNA;
         double allSecurity = overallTotal == 0 ? 0.0 : (double) totalSafe / overallTotal * 100;
         allSecurity = Double.parseDouble(String.format("%.2f", allSecurity));
-
-
         //section1
         Map<String, Object> section1 = new HashMap<>();
         section1.put("DATE", serverInfoMap.get("DATE"));
@@ -91,7 +88,6 @@ public class HomeController {
         }
         //section4
         String report = "업로드 공간";
-
         model.addAttribute("section1", section1);
         logger.info("section1 : {}", section1);
         model.addAttribute("section2", section2);

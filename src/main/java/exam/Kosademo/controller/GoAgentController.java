@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -28,7 +27,7 @@ public class GoAgentController {
     @Value("${json.file.path}")
     private String jsonFilePath;
 
-    @PostMapping("run")
+    @PostMapping("runrun")
     public ResponseEntity<InputStreamResource> runPythonScript(RedirectAttributes redirectAttributes) {
         try {
             // Python 스크립트 실행
@@ -67,7 +66,6 @@ public class GoAgentController {
                 output.append(line).append("\n");
             }
         }
-
         int exitCode = process.waitFor();
         if (exitCode != 0) {
             throw new RuntimeException("Python script execution failed with exit code: " + exitCode);
