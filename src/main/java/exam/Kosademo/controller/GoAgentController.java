@@ -7,7 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.BufferedReader;
@@ -28,33 +28,28 @@ public class GoAgentController {
     @Value("${json.file.path}")
     private String jsonFilePath;
 
-    @GetMapping("/runAgent")
+    @PostMapping("run")
     public ResponseEntity<InputStreamResource> runPythonScript(RedirectAttributes redirectAttributes) {
         try {
             // Python 스크립트 실행
             String result = runPythonScript(pythonScriptPath);
-
             // 생성된 JSON 파일 이름
             String jsonFileName = "result.json"; // 여기서 result.json은 스크립트에 의해 생성된 파일입니다
             File file = new File(jsonFilePath + jsonFileName);
-
             if (!file.exists()) {
                 throw new FileNotFoundException("Generated JSON file not found: " + jsonFileName);
             }
-
             InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-
             // 파일 다운로드 응답 반환
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + jsonFileName)
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(resource);
-
         } catch (IOException | InterruptedException e) {
-            log.error("Error occurred while running Python script", e);
+            e.printStackTrace();
             return ResponseEntity.status(500).body(new InputStreamResource(new ByteArrayInputStream(e.getMessage().getBytes())));
         } catch (RuntimeException e) {
-            log.error("Runtime exception occurred while running Python script", e);
+            e.printStackTrace();
             return ResponseEntity.status(500).body(new InputStreamResource(new ByteArrayInputStream(e.getMessage().getBytes())));
         }
     }
@@ -81,3 +76,5 @@ public class GoAgentController {
         return output.toString();
     }
 }
+
+//ssh -i "testkey1.pem" testClient1@3.35.206.80

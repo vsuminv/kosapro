@@ -12,13 +12,13 @@ def start_agent():
     port = int(entry_port.get())
     ip_address = entry_ip.get()
     #key_filename = r'C:\Spring\project\KosaProject\src\main\resources\testkey1.pem'
-    
+   
     try:
         # Paramiko SSH 클라이언트 생성
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(ip_address, port=port, username=username, password = password)
-        
+       
         # SFTP 클라이언트 초기화
         sftp = ssh.open_sftp()
         #여기에 본인 CentOs6.sh 파일경로 지정 해주셔야 되요
@@ -43,7 +43,7 @@ def start_agent():
 
         sftp.close()
         ssh.close()
-        
+       
         jsonfile_rename()
         messagebox.showinfo("Success", "Agent works successfully!")
     except Exception as e:

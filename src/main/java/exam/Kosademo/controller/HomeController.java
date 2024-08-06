@@ -19,7 +19,6 @@ import java.util.*;
 
 @Slf4j
 @Controller
-@RequiredArgsConstructor
 @Tag(name = "Controller", description = "API 명세서") //http://localhost:8081/swagger-ui/index.html
 public class HomeController {
     private final ClassPathResource resource = new ClassPathResource("result2.json");
