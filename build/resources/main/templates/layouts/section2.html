@@ -1,0 +1,113 @@
+<section th:fragment="Section2">
+    <div class="grid gap-4">
+        <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">취약점과 개선안</h2>
+
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">ResultInfo</h3>
+                </div>
+                <div class="p-6">
+                    <div class="aspect-[4/3]">
+                        <div
+                                class="flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke='#fff']]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&amp;_.recharts-radial-bar-background-sector]:fill-muted [&amp;_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&amp;_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&amp;_.recharts-sector[stroke='#fff']]:stroke-transparent [&amp;_.recharts-sector]:outline-none [&amp;_.recharts-surface]:outline-none min-h-[300px]"
+                                data-chart="chart-r1"
+                        >
+                            <div class="recharts-responsive-container"
+                                 style="width: 100%; height: 100%; min-width: 0px;">
+                                <div
+                                        class="recharts-wrapper"
+                                        style="position: relative; cursor: default; width: 718px; height: 404px;"
+                                >
+                                    <svg
+                                            tabindex="0"
+                                            role="application"
+                                            class="recharts-surface"
+                                            width="718"
+                                            height="404"
+                                            viewBox="0 0 718 404"
+                                            style="width: 100%; height: 100%;"
+                                    >
+                                        <title></title>
+                                        <desc></desc>
+                                        <defs>
+                                            <clipPath id="recharts2-clip">
+                                                <rect x="5" y="5" height="394" width="708"></rect>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+                        ResultSimple
+                    </h3>
+                </div>
+                <div class="p-6">
+                    <div class="relative w-full">
+                        <table class="w-full caption-bottom text-sm">
+                            <thead class="[&amp;_tr]:border-b">
+                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Category
+                                </th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Importance
+                                </th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Status
+                                </th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Sub_Category
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="[&amp;_tr:last-child]:border-0" id="tbody">
+                            <tr th:each="data, iterStat : ${checkResults}"
+                                class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"
+                                    th:text="${data.Category}"></td>
+                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-green-500 text-green-50"
+                                         data-v0-t="badge" id="importance"><span th:text="${data.Importance}"></span>
+                                    </div>
+                                </td>
+                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                    <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-red-500 text-green-50"
+                                         data-v0-t="badge" id="status"><span th:text="${data.status}"></span>
+                                    </div>
+                                </td>
+                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"
+                                    th:text="${data.Sub_Category}">
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <a class="text-primary hover:underline text-right" href="#">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tableBody = document.getElementsByTagName('tbody');
+        var rowCount = tableBody.rows.length;
+
+        if (rowCount > 6) {
+            tableBody.style.maxHeight = '384px'; // 스크롤바가 나타날 최대 높이 설정
+            tableBody.style.overflowY = 'auto'; // 세로 스크롤바 표시
+        }
+    });
+</script>

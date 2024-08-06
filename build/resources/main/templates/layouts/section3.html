@@ -1,0 +1,58 @@
+<section th:fragment="Section3">
+    <div class="grid gap-4">
+        <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-semibold">Report</h2>
+
+        </div>
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+            <div class="p-6">
+                <div class="relative w-full overflow-auto">
+                    <table class="w-full caption-bottom text-sm">
+                        <thead class="[&amp;_tr]:border-b">
+                        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                OS
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                Host
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                IP
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                진단 항목
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                중요도
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                안정성
+                            </th>
+                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                판단기준
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="[&_tr:last-child]:border-0  max-h-96 overflow-auto" id="section3Tbody">
+                        <tr th:each="data : ${section3}" class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0" th:text="${data.OS}"></td>
+                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0" th:text="${data.Host}"></td>
+                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0" th:text="${data.IP}"></td>
+                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0" th:text="${data.Sub_Category}"></td>
+                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0" th:text="${data.Importance}"></td>
+                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0" th:text="${data.Status}"></td>
+                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-yellow-500 text-yellow-50" data-v0-t="badge">
+                                    In Progress
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
