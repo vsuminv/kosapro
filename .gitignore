@@ -122,4 +122,21 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
 
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional REPL history
+.node_repl_history
+
+#보안관련해서..
+package-lock.json
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij
