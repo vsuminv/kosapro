@@ -93,19 +93,19 @@ public class HomeController {
         String report = "업로드 공간";
 
         model.addAttribute("section1", section1);
-        logger.info("section1 : {}", section1);
+        //logger.info("section1 : {}", section1);
         model.addAttribute("section2", section2);
-        logger.info("section2 : {}", section2);
+        //logger.info("section2 : {}", section2);
         model.addAttribute("section3", section3);
-        logger.info("section3 : {}", section3);
+        //logger.info("section3 : {}", section3);
         model.addAttribute("checkResults", checkResults);
-        logger.info("진단 결과: {}", checkResults);
+        //logger.info("진단 결과: {}", checkResults);
         model.addAttribute("categorizedResults", categorizedResults);
 //        logger.info("항목별 상태: {}", categorizedResults);
         model.addAttribute("categorySecurity", categorySecurity);
-        logger.info("개별 보안: {}", categorySecurity);
+        //logger.info("개별 보안: {}", categorySecurity);
         model.addAttribute("allSecurity", allSecurity);
-        logger.info("서버 보안: {}%", allSecurity);
+       // logger.info("서버 보안: {}%", allSecurity);
 
         return "pages/main";
     }
