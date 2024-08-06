@@ -9,6 +9,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.*;
@@ -20,9 +22,8 @@ import java.time.format.DateTimeFormatter;
 public class PythonController  {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @PostMapping("/run-python")
+    @PostMapping()
     public ResponseEntity<InputStreamResource> runPythonScript() throws IOException{
-
         try {
             // Python 스크립트 실행
             ProcessBuilder processBuilder = new ProcessBuilder("python", "C:/Spring/project/KosaProject/src/main/resources/static/make_result.py");
