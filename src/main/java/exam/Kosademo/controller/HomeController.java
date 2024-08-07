@@ -1,6 +1,5 @@
 package exam.Kosademo.controller;
 
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,31 +8,64 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
+import software.amazon.awssdk.services.s3.model.ListObjectsV2Response;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 @Slf4j
 @Controller
-@Tag(name = "Controller", description = "API 명세서") //http://localhost:8081/swagger-ui/index.html
+@Tag(name = "Controller", description = "API 명세서")
+@RequiredArgsConstructor
 public class HomeController {
-    private final ClassPathResource resource = new ClassPathResource("result2.json");
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Value("${aws.s3.bucket.name}")
+    private String bucketName;
+
+    private final S3Client s3Client;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/")
-    @Operation(summary = "resource/objectMapper", description = "serverInfoMap , checkResults , categorizedResults , categorySecurity , allSecurity , report")
+    public String main(){
+        return "pages/main";
+    }
+    @GetMapping("/result")
+    @Operation(summary = "resource/objectMapper", description = "서버 정보 및 결과")
     public String getData(Model model) throws IOException {
-        Map<String, Object> jsonMap = objectMapper.readValue(resource.getInputStream(), new TypeReference<Map<String, Object>>() {
-        });
+        // 최신 JSON 파일의 키를 가져옵니다.
+        String mostRecentFileKey = fetchMostRecentJsonFileKey();
+        logger.info("Most recent JSON file key: {}", mostRecentFileKey);
+
+        if (mostRecentFileKey == null) {
+            model.addAttribute("message", "No JSON file found in the bucket.");
+            return "pages/main";
+        }
+
+        // JSON 파일을 다운로드합니다.
+        File jsonFile = downloadJsonFileFromS3(mostRecentFileKey);
+
+        // JSON 파일을 파싱합니다.
+        Map<String, Object> jsonMap = parseJsonFile(jsonFile);
         Map<String, Object> serverInfoMap = (Map<String, Object>) jsonMap.get("Server_Info");
         List<Map<String, Object>> checkResults = (List<Map<String, Object>>) jsonMap.get("Check_Results");
 
-        // checkResults 에서 항목,상태만 뽑은 맵
+        // checkResults에서 항목, 상태만 뽑은 맵
         Map<String, Map<String, Integer>> categorizedResults = new TreeMap<>();
         for (Map<String, Object> item : checkResults) {
             String category = (String) item.get("Category");
@@ -42,6 +74,7 @@ public class HomeController {
             stats.put(status, stats.getOrDefault(status, 0) + 1);
             categorizedResults.put(category, stats);
         }
+
         // 개별 안정성
         Map<String, Double> categorySecurity = new TreeMap<>();
         for (String category : categorizedResults.keySet()) {
@@ -53,6 +86,7 @@ public class HomeController {
             double securityIndex = total == 0 ? 0.0 : (double) safe / total * 100;
             categorySecurity.put(category, Double.parseDouble(String.format("%.2f", securityIndex)));
         }
+
         // 서버 전체 안정성
         int totalSafe = 0, totalVulnerable = 0, totalNA = 0;
         for (Map<String, Integer> stats : categorizedResults.values()) {
@@ -64,19 +98,20 @@ public class HomeController {
         double allSecurity = overallTotal == 0 ? 0.0 : (double) totalSafe / overallTotal * 100;
         allSecurity = Double.parseDouble(String.format("%.2f", allSecurity));
 
-
-        //section1
+        // section1
         Map<String, Object> section1 = new HashMap<>();
         section1.put("DATE", serverInfoMap.get("DATE"));
         section1.put("SW_INFO", serverInfoMap.get("SW_INFO"));
         section1.put("allSecurity", allSecurity);
-        //section2
+
+        // section2
         Map<String, Object> section2 = new HashMap<>();
         section2.put("Category", serverInfoMap.get("Category"));
         section2.put("Importance", serverInfoMap.get("Importance"));
         section2.put("status", serverInfoMap.get("status"));
         section2.put("Sub_Category", serverInfoMap.get("Sub_Category"));
-        //section3
+
+        // section3
         List<Map<String, Object>> section3 = new ArrayList<>();
         for (Map<String, Object> result : checkResults) {
             Map<String, Object> data = new HashMap<>();
@@ -89,24 +124,68 @@ public class HomeController {
             data.put("Sub_Category", result.get("Sub_Category"));
             section3.add(data);
         }
-        //section4
+
+        // section4
         String report = "업로드 공간";
 
+        // 모델에 데이터 추가
         model.addAttribute("section1", section1);
-        //logger.info("section1 : {}", section1);
         model.addAttribute("section2", section2);
-        //logger.info("section2 : {}", section2);
         model.addAttribute("section3", section3);
-        //logger.info("section3 : {}", section3);
         model.addAttribute("checkResults", checkResults);
-        //logger.info("진단 결과: {}", checkResults);
         model.addAttribute("categorizedResults", categorizedResults);
-//        logger.info("항목별 상태: {}", categorizedResults);
         model.addAttribute("categorySecurity", categorySecurity);
-        //logger.info("개별 보안: {}", categorySecurity);
         model.addAttribute("allSecurity", allSecurity);
-       // logger.info("서버 보안: {}%", allSecurity);
 
         return "pages/main";
+    }
+
+    private String fetchMostRecentJsonFileKey() throws IOException {
+        ListObjectsV2Request listObjectsRequest = ListObjectsV2Request.builder()
+                .bucket(bucketName)
+                .build();
+
+        ListObjectsV2Response listObjectsResponse = s3Client.listObjectsV2(listObjectsRequest);
+
+        String mostRecentFileKey = null;
+        long mostRecentTimestamp = Long.MIN_VALUE;
+
+        for (var s3Object : listObjectsResponse.contents()) {
+            String key = s3Object.key();
+            if (key.endsWith(".json")) {
+                if (s3Object.lastModified().toEpochMilli() > mostRecentTimestamp) {
+                    mostRecentFileKey = key;
+                    mostRecentTimestamp = s3Object.lastModified().toEpochMilli();
+                }
+            }
+        }
+
+        if (mostRecentFileKey == null) {
+            logger.error("No JSON files found in the bucket.");
+            throw new IOException("No JSON files found in the bucket.");
+        }
+
+        return mostRecentFileKey;
+    }
+
+    private File downloadJsonFileFromS3(String fileKey) throws IOException {
+        Path filePath = Paths.get("downloaded_" + fileKey);
+        File file = filePath.toFile();
+
+        try (InputStream inputStream = s3Client.getObject(GetObjectRequest.builder()
+                .bucket(bucketName)
+                .key(fileKey)
+                .build())) {
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        return file;
+    }
+
+    private Map<String, Object> parseJsonFile(File jsonFile) throws IOException {
+        logger.info("Parsing JSON file: {}", jsonFile.getAbsolutePath());
+        try (InputStream inputStream = new FileInputStream(jsonFile)) {
+            return objectMapper.readValue(inputStream, new TypeReference<Map<String, Object>>() {});
+        }
     }
 }
