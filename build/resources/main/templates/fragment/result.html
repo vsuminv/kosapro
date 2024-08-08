@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+<div th:fragment="ResultFragment" class="result">
+    <div class="result-menu">
+        <table>
+            <thead>
+            <tr>
+                <th>{model} 데이터베이스</th>
+                <th>{model} 어플리케이션</th>
+                <th>{model} 운영체제</th>
+                <th>{model} 서버</th>
+                <th>{model} 네트워크 장비</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div th:fragment="ResultDetailFragment" class="result-detail">
+        <h1>진단 상세( 매핑돼있음) </h1>
+        <ul>
+            <li th:each="result : ${checkResults}">
+                <h2 th:text="${result['Item']}">Item</h2>
+                <p>Importance: <span th:text="${result['Importance']}"></span></p>
+                <p>Category: <span th:text="${result['Category']}"></span></p>
+                <p>Sub Category: <span th:text="${result['Sub_Category']}"></span></p>
+                <p>Description: <span th:text="${result['Description']}"></span></p>
+                <p>Status: <span th:text="${result['status']}"></span></p>
+                <p>Details: <span th:text="${result['details'][0]}"></span></p>
+
+                <p th:if="${result['solutions'] != null and #lists.size(result['solutions']) > 0}">
+                    Solutions: <span th:text="${result['solutions'][0]}"></span>
+                </p>
+
+                <div>
+                    <h3>Server Info</h3>
+                    <p>SW_TYPE: <span th:text="${result['Server_Info']['SW_TYPE']}"></span></p>
+                    <p>SW_NM: <span th:text="${result['Server_Info']['SW_NM']}"></span></p>
+                    <p>SW_INFO: <span th:text="${result['Server_Info']['SW_INFO']}"></span></p>
+                    <p>HOST_NM: <span th:text="${result['Server_Info']['HOST_NM']}"></span></p>
+                    <p>DATE: <span th:text="${result['Server_Info']['DATE']}"></span></p>
+                    <p>TIME: <span th:text="${result['Server_Info']['TIME']}"></span></p>
+                    <p>IP_ADDRESS: <span th:text="${result['Server_Info']['IP_ADDRESS']}"></span></p>
+                    <p>UNIQ_ID: <span th:text="${result['Server_Info']['UNIQ_ID']}"></span></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

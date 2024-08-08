@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result Details</title>
+    <style>
+        /* 테이블 스타일 설정 */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* 테이블 셀 간의 간격을 없앱니다 */
+        }
+        th, td {
+            border: 1px solid #dddddd; /* 테이블 셀의 테두리를 설정합니다 */
+            text-align: center; /* 텍스트를 중앙 정렬합니다 */
+            padding: 8px; /* 테이블 셀 안의 패딩을 설정합니다 */
+        }
+        th {
+            background-color: #f2f2f2; /* 테이블 헤더의 배경색을 설정합니다 */
+        }
+        .chart {
+            width: 100%;
+            height: 400px; /* 차트의 크기를 설정합니다 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 서버 정보를 표시하는 섹션 -->
+    <h1>서버 정보</h1>
+    <ul>
+        <li>SW_TYPE: <span th:text="${serverInfo['SW_TYPE']}"></span></li>
+        <li>SW_NM: <span th:text="${serverInfo['SW_NM']}"></span></li>
+        <li>SW_INFO: <span th:text="${serverInfo['SW_INFO']}"></span></li>
+        <li>HOST_NM: <span th:text="${serverInfo['HOST_NM']}"></span></li>
+        <li>DATE: <span th:text="${serverInfo['DATE']}"></span></li>
+        <li>TIME: <span th:text="${serverInfo['TIME']}"></span></li>
+        <li>IP_ADDRESS: <span th:text="${serverInfo['IP_ADDRESS']}"></span></li>
+        <li>UNIQ_ID: <span th:text="${serverInfo['UNIQ_ID']}"></span></li>
+    </ul>
+
+    <!-- 진단 결과 통계를 표시하는 섹션 -->
+    <h2>진단결과 통계</h2>
+    <h3>1. Unix 평균 보안수준</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>구 분</th>
+                <th>평균</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Unix</td>
+                <td th:text="${overallSecurityIndex}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2. 영역별 진단 결과</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>보안지수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 각 카테고리별 보안 지수를 표시하는 행을 반복 생성합니다 -->
+            <tr th:each="entry : ${categorySecurityIndices}">
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value} + '%'"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 보안 지수를 시각화하는 차트를 표시하는 섹션 -->
+    <div class="chart">
+        <canvas id="securityChart"></canvas>
+    </div>
+
+    <!-- Chart.js를 사용하여 차트를 생성하는 스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:inline="javascript">
+        // Thymeleaf 변수를 JavaScript 변수로 변환
+        const categorySecurityIndices = /*[[${categorySecurityIndicesJson}]]*/ '[]';
+        const parsedData = JSON.parse(categorySecurityIndices);
+
+        // 차트에 사용할 레이블과 데이터 값을 추출
+        const labels = Object.keys(parsedData);
+        const dataValues = Object.values(parsedData);
+
+        // 캔버스 요소를 가져와서 차트를 생성
+        const ctx = document.getElementById('securityChart').getContext('2d');
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: '보안지수',
+                data: dataValues,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)', // 차트의 배경색을 설정
+                borderColor: 'rgba(54, 162, 235, 1)', // 차트의 테두리 색을 설정
+                borderWidth: 1 // 차트의 테두리 두께를 설정
+            }]
+        };
+        const config = {
+            type: 'bar', // 차트 유형을 막대 차트로 설정
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // y축을 0부터 시작하도록 설정
+                    }
+                }
+            }
+        };
+        new Chart(ctx, config); // 차트를 생성
+    </script>
+</body>
+</html>
