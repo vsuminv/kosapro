@@ -87,6 +87,7 @@ public class HomeController {
             categorySecurity.put(category, Double.parseDouble(String.format("%.2f", securityIndex)));
         }
 
+
         // 서버 전체 안정성
         int totalSafe = 0, totalVulnerable = 0, totalNA = 0;
         for (Map<String, Integer> stats : categorizedResults.values()) {
@@ -98,11 +99,26 @@ public class HomeController {
         double allSecurity = overallTotal == 0 ? 0.0 : (double) totalSafe / overallTotal * 100;
         allSecurity = Double.parseDouble(String.format("%.2f", allSecurity));
 
+
+        // checkResults에서 중요도 뽑고, 상태 뽑아서 중요도별로 차트 3개 만들거임.
+        Map<String, Map<String, Integer>> chart = new TreeMap<>();
+        for (Map<String, Object> item : checkResults) {
+            String importance = (String) item.get("Importance");
+            String status = (String) item.get("status");
+            // Importance가 없으면 새로운 맵 생성
+            chart.putIfAbsent(importance, new HashMap<>());
+            // status 개수 증가
+            Map<String, Integer> statusMap = chart.get(importance);
+            statusMap.put(status, statusMap.getOrDefault(status, 0) + 1);
+        }
+
+
         // section1
         Map<String, Object> section1 = new HashMap<>();
         section1.put("DATE", serverInfoMap.get("DATE"));
         section1.put("SW_INFO", serverInfoMap.get("SW_INFO"));
         section1.put("allSecurity", allSecurity);
+
 
         // section2
         Map<String, Object> section2 = new HashMap<>();
@@ -110,6 +126,8 @@ public class HomeController {
         section2.put("Importance", serverInfoMap.get("Importance"));
         section2.put("status", serverInfoMap.get("status"));
         section2.put("Sub_Category", serverInfoMap.get("Sub_Category"));
+
+
 
         // section3
         List<Map<String, Object>> section3 = new ArrayList<>();
@@ -125,8 +143,11 @@ public class HomeController {
             section3.add(data);
         }
 
+
         // section4
         String report = "업로드 공간";
+
+
 
         // 모델에 데이터 추가
         model.addAttribute("section1", section1);
@@ -136,6 +157,9 @@ public class HomeController {
         model.addAttribute("categorizedResults", categorizedResults);
         model.addAttribute("categorySecurity", categorySecurity);
         model.addAttribute("allSecurity", allSecurity);
+        model.addAttribute("chart", chart);
+
+        log.info(chart.toString());
 
         return "pages/main";
     }

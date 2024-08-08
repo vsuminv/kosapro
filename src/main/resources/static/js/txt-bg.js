@@ -1,42 +1,44 @@
 document.addEventListener('DOMContentLoaded', function () {
     const importanceElements = document.querySelectorAll('.importance');
     const statusElements = document.querySelectorAll('.status');
-    var transformText = '';
 
     importanceElements.forEach(element => {
         const importance = element.textContent;
-        let bgColor = '';
-        let textColor = '';
         let font = '';
+        let textColor = '';
         let transformText = '';
 
         if (importance === '(상)') {
-            bgColor='bg-red-500'
-            textColor = 'text-gray-500';
-            transformText = "dd"
+            textColor = 'text-red-500';
+            transformText = "높음"
         } else if (importance === '(중)') {
-            textColor = 'text-gray-500';
-        } else {
+            textColor = 'text-yellow-500';
+            transformText = "중간"
+        } else if (importance === '(하)') {
             textColor = 'text-grey-500';
+            transformText = "낮음"
+            
         }
 
-        element.parentElement.classList.add(transformText, bgColor, textColor);
+        element.parentElement.classList.add(transformText, textColor);
+        element.textContent = transformText;
+
     });
 
     statusElements.forEach(element => {
         const status = element.textContent;
         let bgColor = '';
         let textColor = '';
-        let statusText = '';
+        let transformText = '';
 
         if (status === '[취약]') {
             bgColor = 'bg-red-200';
             textColor = 'text-white';
-            statusText = 'Warning';
+            transformText = 'Warning';
         } else if (status === '[인터뷰]') {
             bgColor = 'bg-yellow-200';
             textColor = 'text-white';
-            statusText = 'Interview';
+            transformText = 'Interview';
         } else {
             bgColor = 'bg-green-200';
             textColor = 'text-white';
@@ -44,8 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         element.parentElement.classList.add(bgColor, textColor);
-        element.textContent = statusText;
+        element.textContent = transformText;
     });
-
 });
 

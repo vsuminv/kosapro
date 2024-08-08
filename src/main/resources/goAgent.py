@@ -7,7 +7,7 @@ import os
 
 def get_resource_path(file_name):
     # 절대 경로를 직접 설정
-    return os.path.join(r'C:\Users\Leesumin\Documents\kosapro\src\main\resources', file_name)
+    return os.path.join(r'C:\개인\projects\ss\kosapro\src\main\resources', file_name)
 
 def start_agent():
     username = entry_username.get()

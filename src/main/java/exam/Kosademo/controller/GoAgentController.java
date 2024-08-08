@@ -38,7 +38,7 @@ public class GoAgentController {
 
    /* @PostMapping("run")
     public RedirectView runPythonScript runPythonScript(RedirectAttributes redirectAttributes) {
-   */   @PostMapping("run")
+   */   @PostMapping("/run")
         public RedirectView runPythonScript(RedirectAttributes redirectAttributes) {
 
        try {
