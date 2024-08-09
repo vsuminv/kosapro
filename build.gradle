@@ -11,6 +11,10 @@ group 'org.example'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '17'
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-parameters"
+}
+
 repositories {
     mavenCentral()
 }
