@@ -7,7 +7,7 @@ from openpyxl import load_workbook  # 엑셀 파일 처리 모듈(정렬, 색채
 from openpyxl.styles import Alignment, PatternFill, Font, Border, Side
 
 # JSON 파일의 경로 찾기
-json_files = glob.glob('C:\Users\admin\Downloads\kosapro-main\downloaded_result_24-08-08_cpZw2TcXXn.json')
+# json_files = glob.glob('C:/Spring/project/KosaProject/src/main/resources/result2.json')
 
 data = {} # 진단 데이터(json)
 df = {}   # 진단 데이터프레임
