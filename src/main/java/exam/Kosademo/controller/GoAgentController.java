@@ -147,6 +147,8 @@ import com.jcraft.jsch.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -209,7 +211,11 @@ public class GoAgentController {
             redirectAttributes.addFlashAttribute("successMessage", "Agent works successfully!");
             return new RedirectView("/result");
         } catch (Exception e) {
-            log.error("Error during SSH execution or S3 upload", e);
+            log.error("SSH S3 업로드 에러", e);
+
+
+            log.info("JSON file uploaded to S3 bucket: " + bucketName);
+
             // 오류 메시지 설정
             redirectAttributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
             return new RedirectView("/");
@@ -272,10 +278,9 @@ public class GoAgentController {
 
     private String getResourcePath(String fileName) {
         // 절대 경로 사용
-        String basePath = "C:\\Users\\Leesumin\\Documents\\kosapro\\src\\main\\resources"; // 직접 경로를 설정
+        String basePath = "C:\\Kosa\\src\\main\\resources"; // 직접 경로를 설정
         return Paths.get(basePath, fileName).toString();
     }
-
     private Optional<File> findJsonFile() {
         File dir = new File(jsonFileDirectory);
         if (!dir.exists() || !dir.isDirectory()) {
@@ -307,7 +312,6 @@ public class GoAgentController {
                 latestFile = file;
             }
         }
-
         return Optional.of(latestFile);
     }
 }

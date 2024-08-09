@@ -1,108 +1,3 @@
-<!--<section th:fragment="Section1">-->
-<!--    <div class="grid gap-4">-->
-<!--        <div class="flex items-center justify-between">-->
-<!--            <h2 class="text-2xl font-semibold">CCE</h2>-->
-<!--            <form th:action="@{/run}" method="post">-->
-<!--                <button class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md border px-4 py-2 text-sm font-medium transition-colors ring-offset-background border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"-->
-<!--                        type="submit">Start-->
-<!--                </button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--        <div class="grid gap-4 md:grid-cols-2">-->
-<!--            <div class="rounded-lg border shadow-sm bg-card text-card-foreground" data-v0-t="card">-->
-<!--                <div class="flex flex-col p-6 space-y-1.5">-->
-<!--                    <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">목적</h3>-->
-<!--                </div>-->
-<!--                <div class="p-6">-->
-<!--                    <div class="aspect-[4/3]">-->
-<!--                        <div class="flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke='#fff']]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&amp;_.recharts-radial-bar-background-sector]:fill-muted [&amp;_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&amp;_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&amp;_.recharts-sector[stroke='#fff']]:stroke-transparent [&amp;_.recharts-sector]:outline-none [&amp;_.recharts-surface]:outline-none min-h-[300px]"-->
-<!--                             data-chart="chart-r0">-->
-<!--                            <div class="recharts-responsive-container"-->
-<!--                                 style="width: 100%; height: 100%; min-width: 0px;">-->
-<!--                                <div class="recharts-wrapper"-->
-<!--                                     style="position: relative; cursor: default; width: 718px; height: 404px;">-->
-<!--                                    <svg-->
-<!--                                            tabindex="0"-->
-<!--                                            role="application"-->
-<!--                                            class="recharts-surface"-->
-<!--                                            width="718"-->
-<!--                                            height="404"-->
-<!--                                            viewBox="0 0 718 404"-->
-<!--                                            style="width: 100%; height: 100%;"-->
-<!--                                    >-->
-<!--                                        <title></title>-->
-<!--                                        <desc></desc>-->
-<!--                                        <defs>-->
-<!--                                            <clipPath id="recharts1-clip">-->
-<!--                                                <rect x="12" y="0" height="404" width="694"></rect>-->
-<!--                                            </clipPath>-->
-<!--                                        </defs>-->
-<!--                                    </svg>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="rounded-lg border shadow-sm bg-card text-card-foreground" data-v0-t="card">-->
-<!--                <div class="flex flex-c ol p-6 space-y-1.5">-->
-<!--                    <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Top 10-->
-<!--                        CVEs</h3>-->
-<!--                </div>-->
-<!--                <div class="p-6">-->
-<!--                    <div class="relative max-h-96 w-full overflow-auto">-->
-<!--                        <table class="w-full text-sm caption-bottom">-->
-<!--                            <thead class="[&amp;_tr]:border-b">-->
-<!--                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">-->
-<!--                                <th class="h-12 px-4 text-left align-middle font-bold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">-->
-<!--                                    점검일-->
-<!--                                </th>-->
-<!--                                <th class="h-12 px-4 align-middle font-bold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">-->
-<!--                                    Server-->
-<!--                                </th>-->
-<!--                                <th class="h-12 px-4 align-middle font-bold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">-->
-<!--                                    Status-->
-<!--                                </th>-->
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody class="[&_tr:last-child]:border-0">-->
-<!--                            <tr th:if="${section1 != null}">-->
-<!--                                <td class="p-2 align-middle" th:text="${section1.DATE}"></td>-->
-<!--                                <td class="p-2 pl-36 align-middle" th:text="${section1.SW_INFO}"></td>-->
-<!--                                <td class="p-2 pl-10 align-middle">-->
-<!--                                    <div th:classappend="${section1.allSecurity >= 70 ?-->
-<!--                                                    'inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-green-500 text-white' :-->
-<!--                                                    'inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-red-500 text-white'}"-->
-<!--                                         data-v0-t="badge">-->
-<!--                                        <span th:text="${section1.allSecurity + '%'}"></span>-->
-<!--                                    </div>-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            &lt;!&ndash; 데이터가 없을 경우에 빈 상태로 유지 &ndash;&gt;-->
-<!--                            <tr th:unless="${section1 != null}">-->
-<!--                                <td colspan="3" class="p-2 text-center text-muted-foreground">No data available</td>-->
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run Script</title>
-</head>
-<body>
-<h1>Run Agent Script</h1>
-
-<!-- Success and Error Messages -->
 <div id="messages">
     <div th:if="${successMessage}">
         <p class="success" th:text="${successMessage}"></p>
@@ -117,29 +12,27 @@
     <div class="grid gap-4">
         <div class="flex items-center justify-between">
             <h2 class="text-2xl font-semibold">Run Agent Script</h2>
+
             <form action="/run" method="post">
                 <div class="form-group">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <input value="centos" type="text" id="username" name="username" required>
                 </div>
-
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input value="0718" type="text" id="password" name="password" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="ipAddress">IP Address:</label>
-                    <input type="text" id="ipAddress" name="ipAddress" required>
-                </div>
-
                 <div class="form-group">
                     <label for="port">Port:</label>
-                    <input type="number" id="port" name="port" min="1" max="65535" required>
+                    <input value="22" type="text" id="port" name="port" min="1" max="65535" required>
                 </div>
-
+                <div class="form-group">
+                    <label for="ipAddress">IP Address:</label>
+                    <input value="3.35.206.80" type="text" id="ipAddress" name="ipAddress" required>
+                </div>
                 <button type="submit">Start</button>
             </form>
+
         </div>
 
         <div class="grid gap-4 md:grid-cols-2">
