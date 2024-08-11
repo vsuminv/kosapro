@@ -7,7 +7,7 @@ import os
 
 def get_resource_path(file_name):
     # 절대 경로를 직접 설정
-    return os.path.join(r'C:\개인\projects\ss\kosapro\src\main\resources', file_name)
+    return os.path.join(r'C:\개인\projects\kosapro\src\main\resources', file_name)
 
 def start_agent():
     username = entry_username.get()
@@ -92,25 +92,3 @@ def jsonfile_rename():
     os.rename(file_path, new_file_path)
 
 # GUI 설정
-root = tk.Tk()
-root.title("CCE Agent")
-
-tk.Label(root, text="Username").grid(row=0)
-tk.Label(root, text="Password").grid(row=1)
-tk.Label(root, text="Port").grid(row=2)
-tk.Label(root, text="IP Address").grid(row=3)
-
-entry_username = tk.Entry(root)
-entry_password = tk.Entry(root, show='*')
-entry_port = tk.Entry(root)
-entry_ip = tk.Entry(root)
-
-entry_username.grid(row=0, column=1)
-entry_password.grid(row=1, column=1)
-entry_port.grid(row=2, column=1)
-entry_ip.grid(row=3, column=1)
-
-tk.Button(root, text="  Start  ", command=start_agent).grid(row=4, column=0)
-tk.Button(root, text=" Stop ", command=on_destroy).grid(row=4, column=1, columnspan=2)
-
-root.mainloop()
