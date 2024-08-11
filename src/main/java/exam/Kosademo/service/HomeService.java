@@ -1,10 +1,7 @@
 package exam.Kosademo.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +12,6 @@ import java.util.*;
 public class HomeService {
 
     private final S3Service s3Service;
-    private final ObjectMapper objectMapper;
     public Map<String, Object> getCheckResultData() throws IOException {
         File jsonFile = s3Service.downloadLatestJsonFile();
         Map<String, Object> jsonMap = s3Service.parseJsonFile(jsonFile);
@@ -25,7 +21,6 @@ public class HomeService {
         Map<String, Map<String, Integer>> categorizedResults = getCategorizedResults(checkResults);
         Map<String, Double> categorySecurity = getCategorySecurity(categorizedResults);
         double allSecurity = getAllSecurity(categorizedResults);
-
         Map<String, Object> section1 = getSection1(serverInfoMap, allSecurity);
         Map<String, Object> section2 = getSection2(serverInfoMap);
         List<Map<String, Object>> section3 = getSection3(serverInfoMap, checkResults);
@@ -79,22 +74,7 @@ public class HomeService {
         return overallTotal == 0 ? 0.0 : Double.parseDouble(String.format("%.2f", (double) totalSafe / overallTotal * 100));
     }
 
-    private Map<String, Object> getChart(List<Map<String, Object>> checkResults) {
-        Map<String, Object> chartData = new HashMap<>();
-        Map<String, Map<String, Integer>> importanceStatusChart = new HashMap<>();
-        for (Map<String, Object> result : checkResults) {
-            String importance = (String) result.get("Importance");
-            String status = (String) result.get("status");
-            importanceStatusChart.computeIfAbsent(importance, k -> new HashMap<>())
-                    .merge(status, 1, Integer::sum);
         }
-        chartData.put("chart", importanceStatusChart);
-        Map<String, Map<String, Integer>> categorizedResults = getCategorizedResults(checkResults);
-        Map<String, Double> categorySecurity = getCategorySecurity(categorizedResults);
-        chartData.put("categorySecurity", categorySecurity);
-        double allSecurity = getAllSecurity(categorizedResults);
-        chartData.put("allSecurity", allSecurity);
-        return chartData;
     }
 
     private Map<String, Object> getSection1(Map<String, Object> serverInfoMap, double allSecurity) {
@@ -129,6 +109,4 @@ public class HomeService {
         }
         return section3;
     }
-
-
 }
