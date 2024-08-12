@@ -3,6 +3,11 @@
     "SW_TYPE": "Linux",
     "SW_NM": "CentOS",
     "SW_INFO": "CentOS Linux release 7.9.2009 (Core)",
+    "HOST_NM": "localhost.localdomain",
+    "DATE": "24-04-20",
+    "TIME": "02:32:03",
+    "IP_ADDRESS": "10.0.3.15",
+    "UNIQ_ID": "24-04-20_YFGJcUsfMn"
   },
   "Check_Results": [
     {
@@ -134,6 +139,7 @@
       "Description": "시스템 계정 중 불필요한 계정(퇴직, 전직, 휴직 등의 이유로 사용하지 않는 계정 및 장기적으로 사용하지 않는 계정 등)이 존재하는지 점검",
       "status": "[인터뷰]",
       "details": [
+        "로그인이 가능한 일반 사용자 계정(jwkim test )의 목적이 확인되지 않아 담당자 확인이 필요합니다."
       ]
     },
     {
@@ -153,7 +159,12 @@
       "Category": "1. 계정관리",
       "Sub_Category": "1.12 계정이 존재하지 않는 GID 금지",
       "Description": "그룹(예: /etc/group) 설정 파일에 불필요한 그룹(계정이 존재하지 않고 시스템 관리나 운용에 사용되지 않는 그룹, 계정이 존재하고 시스템 관리나 운용에 사용되지 않는 그룹 등)이 존재하는지 점검",
+      "status":"[취약]",
       "details": [
+        "로그인이 가능한 사용자 계정(jwkim )의 그룹 내 타사용자가 존재하는 상태입니다."
+      ],
+      "solutions": [
+        "주요정보통신기반시설 가이드를 참고하시어 관리자 검토 후 불필요한 계정일 경우 제거하여 주시기 바랍니다."
       ]
     },
     {
@@ -175,6 +186,7 @@
       "Description": "로그인이 불필요한 계정(adm, sys, daemon 등)에 쉘 부여 여부 및 로그인 가능한 모든 계정의 bash_history 파일 존재 여부 점검",
       "status":"[취약]",
       "details": [
+        "로그인이 가능한 사용자(jwkim )의 bash_history 파일이 존재하지 않는 상태입니다."
       ],
       "solutions": [
         "주요통신기반시설 가이드를 참고하시어 사용되지 않는 로그인 가능한 사용자 계정을 제거하거나 /bin/false 또는 /sbin/nologin 쉘을 부여하여 주시기 바랍니다."
@@ -267,6 +279,8 @@
       "Item": "U-11",
       "Importance": "(상)",
       "Category": "2. 파일 및 디렉토리 관리",
+      "Sub_Category": "2.7 /etc/syslog.conf 파일 소유자 및 권한 설정",
+      "Description": "/etc/syslog.conf 파일의 권한 적절성 점검",
       "status":"[취약]",
       "details": [
         "/etc/rsyslog.conf 파일에 대한 권한이 644 으로 설정되어 있는 상태입니다."
@@ -501,7 +515,9 @@
       "Category": "3. 서비스 관리",
       "Sub_Category": "3.7 NFS 접근 통제",
       "Description": "NFS(Network File System) 사용 시 허가된 사용자만 접속할 수 있도록 접근 제한 설정 적용 여부 점검",
+      "status": "[N/A]",
       "details": [
+        "NFS 서버가 설치되어 있지 않습니다."
       ]
     },
     {
@@ -820,6 +836,7 @@
       "Description": "시스템에서 최신 패치가 적용되어 있는지 점검",
       "status": "[인터뷰]",
       "details": [
+        "glibc-2.17-326.el7_9.x86_64 openssh-7.4p1-23.el7_9.x86_64 openssh-clients-7.4p1-23.el7_9.x86_64 bash-4.2.46-35.el7_9.x86_64 glibc-common-2.17-326.el7_9.x86_64 openssl-libs-1.0.2k-26.el7_9.x86_64 openssh-server-7.4p1-23.el7_9.x86_64 openssl-1.0.2k-26.el7_9.x86_64  ",
         "패치 적용 정책을 수립하고 최신 패치를 적용하고 있는지 담당자 확인이 필요합니다."
       ]
     },
