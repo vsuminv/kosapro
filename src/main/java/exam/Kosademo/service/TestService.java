@@ -48,9 +48,11 @@ public class TestService {
             Channel channel = s.openChannel("exec");
             channel.connect();
             s3.executeCommand(s, "sudo bash CentOS6.sh");
+            s3.uploadFile(s, centosScriptPath);
             s3.executeCommand(s, "cd ~");
             s3.executeCommand(s, "sudo bash agent.sh");
             Thread.sleep(20000);
+            s3.downloadFile(s,resultJsonPath);
             s3.executeCommand(s, "rm agent.sh");
             s3.executeCommand(s, "rm result.json");
             Thread.sleep(2000);
