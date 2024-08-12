@@ -1,7 +1,11 @@
-// postcss.config.js
+/* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = {
-    plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-    ],
-}
+    plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+        cssnano:
+            process.env.NPM_ENV === 'production'
+                ? { preset: 'default' }
+                : false,
+    },
+};
