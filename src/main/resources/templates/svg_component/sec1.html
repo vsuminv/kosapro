@@ -1,41 +1,23 @@
-<section th:fragment="Section1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/riva-dashboard-tailwind/riva-dashboard.css">
 
-
+<div class="grid gap-4">
 <div class="flex flex-wrap -mx-3 mb-5">
   <div class="w-full max-w-full px-3 mb-6  mx-auto">
     <div class="relative flex-[1_auto] flex flex-col break-words min-w-0 bg-clip-border rounded-[.95rem] bg-white m-5">
       <div class="relative flex flex-col min-w-0 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30">
         <!-- card header -->
-        <div class="px-9 pt-5 flex justify-between items-stretch flex-wrap min-h-[70px] pb-0 ">
-              <div th:insert="~{svg_component/formregister :: formregister}" class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-gray-500" ></div>
+        <div class="px-9 pt-5 flex justify-between items-stretch flex-wrap min-h-[70px] pb-0 bg-transparent">
+          <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+            <span class="mr-3 font-semibold text-dark"></span>
+            <span class="mt-1 font-medium text-secondary-dark text-lg/normal">All projects from the Loopple team</span>
+          </h3>
           <div class="relative flex flex-wrap items-center my-2">
-<!--              <div class="flex items-center justify-between">-->
-<!--                <form action="/run" method="post">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="username">Username:</label>-->
-<!--                        <input value="centos" type="text" id="username" name="username" required>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="password">Password:</label>-->
-<!--                        <input value="0718" type="text" id="password" name="password" required>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="ipAddress">IP Address:</label>-->
-<!--                        <input value="3.35.206.80" type="text" id="ipAddress" name="ipAddress" required>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="port">Port:</label>-->
-<!--                        <input value="22" type="number" id="port" name="port" min="1" max="65535" required>-->
-<!--                    </div>-->
-<!--                    <button type="submit">Start</button>-->
-<!--                </form>-->
-<!--            </div>-->
             <a href="javascript:void(0)" class="inline-block text-[.925rem] font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-150 ease-in-out text-light-inverse bg-light-dark border-light shadow-none border-0 py-2 px-5 hover:bg-secondary active:bg-light focus:bg-light"> See other projects </a>
           </div>
         </div>
-          <!-- end card header -->
+        <!-- end card header -->
 
-          <!-- card body  -->
+        <!-- card body  -->
         <div class="flex-auto block py-8 pt-6 px-9">
           <div class="overflow-x-auto">
             <table class="w-full my-0 align-middle text-dark border-neutral-200">
@@ -53,8 +35,8 @@
                 <tr th:if="${section1 != null}" class="border-b border-dashed last:border-b-0">
                   <td class="p-3 pl-0">
                     <div class="flex items-center">
-                      <div class="relative w-1 h-1 inline-block shrink-0 rounded-2xl me-3">
-                        <span class="i-fa6-brands-centos"></span>
+                      <div class="relative inline-block shrink-0 rounded-2xl me-3">
+                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-49-new.jpg" class="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl" alt="">
                       </div>
                       <div class="flex flex-col justify-start">
                         <a th:text="${section1.SW_INFO}" href="javascript:void(0)" class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> OS </a>
@@ -89,12 +71,11 @@
 
 
 
-
               <tr class="border-b border-dashed last:border-b-0">
                   <td class="p-3 pl-0">
                     <div class="flex items-center">
-                      <div class="relative w-15 h-15 inline-block shrink-0 rounded-2xl me-3">
-                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-40-new.jpg" class="w-7 h-7 inline-block shrink-0 rounded-2xl" alt="">
+                      <div class="relative inline-block shrink-0 rounded-2xl me-3">
+                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-40-new.jpg" class="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl" alt="">
                       </div>
                       <div class="flex flex-col justify-start">
                         <a href="javascript:void(0)" class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Geolocation App </a>
@@ -130,7 +111,7 @@
                   <td class="p-3 pl-0">
                     <div class="flex items-center">
                       <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-39-new.jpg" class="w-7 h-7 inline-block shrink-0 rounded-2xl" alt="">
+                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-39-new.jpg" class="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl" alt="">
                       </div>
                       <div class="flex flex-col justify-start">
                         <a href="javascript:void(0)" class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> iOS Login <span class="text-sm">(Morra)</span>
@@ -167,7 +148,7 @@
                   <td class="p-3 pl-0">
                     <div class="flex items-center">
                       <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-47-new.jpg" class="w-7 h-7 inline-block shrink-0 rounded-2xl" alt="">
+                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-47-new.jpg" class="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl" alt="">
                       </div>
                       <div class="flex flex-col justify-start">
                         <a href="javascript:void(0)" class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Axios Menu </a>
@@ -205,7 +186,7 @@
                   <td class="p-3 pl-0">
                     <div class="flex items-center">
                       <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-48-new.jpg" class="w-7 h-7 inline-block shrink-0 rounded-2xl" alt="">
+                        <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-48-new.jpg" class="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl" alt="">
                       </div>
                       <div class="flex flex-col justify-start">
                         <a href="javascript:void(0)" class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Resto Aperto </a>
@@ -249,12 +230,3 @@
   </div>
 </div>
 </div>
-
-
-
-
-
-
-
-    </div>
-</section>
