@@ -64,7 +64,6 @@ public class HomeController {
         Map<String, Object> jsonMap = parseJsonFile(jsonFile);
         Map<String, Object> serverInfoMap = (Map<String, Object>) jsonMap.get("Server_Info");
         List<Map<String, Object>> checkResults = (List<Map<String, Object>>) jsonMap.get("Check_Results");
-
         // checkResults에서 항목, 상태만 뽑은 맵
         Map<String, Map<String, Integer>> categorizedResults = new TreeMap<>();
         for (Map<String, Object> item : checkResults) {
@@ -87,7 +86,6 @@ public class HomeController {
             categorySecurity.put(category, Double.parseDouble(String.format("%.2f", securityIndex)));
         }
 
-
         // 서버 전체 안정성
         int totalSafe = 0, totalVulnerable = 0, totalNA = 0;
         for (Map<String, Integer> stats : categorizedResults.values()) {
@@ -98,10 +96,9 @@ public class HomeController {
         int overallTotal = totalSafe + totalVulnerable + totalNA;
         double allSecurity = overallTotal == 0 ? 0.0 : (double) totalSafe / overallTotal * 100;
         allSecurity = Double.parseDouble(String.format("%.2f", allSecurity));
-
-
         // checkResults에서 중요도 뽑고, 상태 뽑아서 중요도별로 차트 3개 만들거임.
         Map<String, Map<String, Integer>> chart = new TreeMap<>();
+
         for (Map<String, Object> item : checkResults) {
             String importance = (String) item.get("Importance");
             String status = (String) item.get("status");
@@ -111,24 +108,17 @@ public class HomeController {
             Map<String, Integer> statusMap = chart.get(importance);
             statusMap.put(status, statusMap.getOrDefault(status, 0) + 1);
         }
-
-
         // section1
         Map<String, Object> section1 = new HashMap<>();
         section1.put("DATE", serverInfoMap.get("DATE"));
         section1.put("SW_INFO", serverInfoMap.get("SW_INFO"));
         section1.put("allSecurity", allSecurity);
-
-
         // section2
         Map<String, Object> section2 = new HashMap<>();
         section2.put("Category", serverInfoMap.get("Category"));
         section2.put("Importance", serverInfoMap.get("Importance"));
         section2.put("status", serverInfoMap.get("status"));
         section2.put("Sub_Category", serverInfoMap.get("Sub_Category"));
-
-
-
         // section3
         List<Map<String, Object>> section3 = new ArrayList<>();
         for (Map<String, Object> result : checkResults) {

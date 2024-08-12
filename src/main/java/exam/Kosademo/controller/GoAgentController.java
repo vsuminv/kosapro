@@ -273,7 +273,7 @@ public class GoAgentController {
     private String getResourcePath(String fileName) {
         // 절대 경로 사용
       //     String basePath = "/root/.ssh/kosapro/src/main/resources";
-	 String basePath = "C:\\Users\\Leesumin\\3D Objects\\Downloads\\kosapro-newenw\\kosapro-newenw\\src\\main\\resources"; // 직접 경로를 설정
+	 String basePath = "C:\\새 폴더 (2)\\kosapro\\src\\main\\resources"; // 직접 경로를 설정
         return Paths.get(basePath, fileName).toString();
     }
 
