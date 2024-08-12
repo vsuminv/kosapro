@@ -180,7 +180,7 @@ public class GoAgentController {
                                   @RequestParam("port") int port,
                                   RedirectAttributes redirectAttributes) {
 
-        log.info(" 방화벽 확인해보자 입력 : {}, 아이피: {}, 포트: {}", username, ipAddress, port);
+        log.info("Received request with username: {}, ipAddress: {}, port: {}", username, ipAddress, port);
 
         try {
             // SSH를 통해 스크립트 실행 및 JSON 파일 다운로드
@@ -203,7 +203,7 @@ public class GoAgentController {
                             .build(),
                     file.toPath());
 
-            log.info("제이슴ㄴ 파일 S3 bucket 로 : " + bucketName);
+            log.info("JSON file uploaded to S3 bucket: " + bucketName);
 
             // 성공 메시지 설정
             redirectAttributes.addFlashAttribute("successMessage", "Agent works successfully!");
@@ -217,7 +217,7 @@ public class GoAgentController {
     }
 
     private void executeAgentScriptOverSSH(String username, String password, String host, int port) throws JSchException, IOException, SftpException, InterruptedException {
-        log.info("커넥팅 성공 SSH server at {}:{} with username: {}", host, port, username);
+        log.info("Connecting to SSH server at {}:{} with username: {}", host, port, username);
 
         JSch jsch = new JSch();
         Session session = jsch.getSession(username, host, port);
@@ -225,15 +225,14 @@ public class GoAgentController {
         session.setConfig("StrictHostKeyChecking", "no");
         session.connect();
 
-        log.info("SSH 세션 connected.");
+        log.info("SSH session connected.");
 
         // SFTP를 통해 파일 업로드
         ChannelSftp sftpChannel = (ChannelSftp) session.openChannel("sftp");
         sftpChannel.connect();
         sftpChannel.put(getResourcePath("CentOS6.sh"), "agent.sh");
 
-        String s = sftpChannel.toString();
-        log.info("SFTP를 통해 파일 업로드 connect 파일명 : {} dst: {}", sftpChannel.get(s));
+        log.info("File uploaded to remote server.");
 
         // SSH를 통해 명령 실행
         ChannelExec execChannel = (ChannelExec) session.openChannel("exec");
@@ -245,21 +244,19 @@ public class GoAgentController {
 
         // 명령 실행 후 결과 처리
         StringBuilder output = new StringBuilder();
-        log.info("output  : {}", output);
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         String line;
         while ((line = reader.readLine()) != null) {
             output.append(line).append("\n");
-        }//줄바꿈
+        }
         execChannel.disconnect();
-        log.info("다 읽고 나오는거: " + output);
 
-        // JSON 파일 다운로드 여기서 No such file 뜸
+        log.info("Command Output: " + output);
+
+        // JSON 파일 다운로드
         sftpChannel.get("result.json", getResourcePath("result.json"));
 
-        Object a = sftpChannel.get("result.json");
-        Object b = sftpChannel.get(getResourcePath("result.json"));
-        log.info("경로 확인 {} {}",a,b);
+        log.info("File downloaded from remote server.");
 
         // 서버의 파일 정리
         execChannel = (ChannelExec) session.openChannel("exec");
@@ -273,17 +270,12 @@ public class GoAgentController {
         log.info("SSH session disconnected.");
     }
 
-
     private String getResourcePath(String fileName) {
         // 절대 경로 사용
-        try {
-            String basePath = "C:\\Kosa\\src\\main\\resources"; // 직접 경로를 설정
-            return Paths.get(basePath, fileName).toString();
-        } catch (Exception e) {
-            return e.toString();
-        }
-
-    } //여기서 에러
+        String basePath = "/root/.ssh/kosapro/src/main/resources";
+	// String basePath = "C:\\Users\\Leesumin\\3D Objects\\Downloads\\kosapro-main\\kosapro-main\\src\\main\\resources"; // 직접 경로를 설정
+        return Paths.get(basePath, fileName).toString();
+    }
 
     private Optional<File> findJsonFile() {
         File dir = new File(jsonFileDirectory);

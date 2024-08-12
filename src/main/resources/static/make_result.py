@@ -7,13 +7,13 @@ from openpyxl import load_workbook  # 엑셀 파일 처리 모듈(정렬, 색채
 from openpyxl.styles import Alignment, PatternFill, Font, Border, Side
 
 # JSON 파일의 경로 찾기
-# json_files = glob.glob('C:/Spring/project/KosaProject/src/main/resources/result2.json')
-
+#json_files = glob.glob('C:/Users/Leesumin/3D Objects/Downloads/kosapro-main/kosapro-main/downloaded_result.json')
+json_files = glob.glob('/root/.ssh/kosapro/build/libs/downloaded_result.json')
 data = {} # 진단 데이터(json)
 df = {}   # 진단 데이터프레임
 df_info = {}
 df_results = {}
-num = 0   # 진단 서버 개수 
+num = 0   # 진단 서버 개수
 
 # 각 결과를 데이터프레임으로 저장하기
 for json_file in json_files:
@@ -53,26 +53,35 @@ df_all = df_all[["No", "운영체제", "호스트명", "진단 일", "IP 주소"
                  "항목 코드", "진단 항목", "위험도", "진단 결과", "판단 기준", "현황", "대응 방안"]]
 
 # 엑셀 파일에서 보기 좋게 엔터키로 구분
-df_all['현황'] = df_all['현황'].apply(lambda x: '\n'.join(x) if isinstance(x, list) else x)
-df_all['대응 방안'] = df_all['대응 방안'].apply(lambda x: '\n'.join(x) if isinstance(x, list) else '')  # 리스트가 있는 경우에만
+# df_all['현황'] = df_all['현황'].apply(lambda x: '\n'.join(x) if isinstance(x, list) else x)
+# df_all['대응 방안'] = df_all['대응 방안'].apply(lambda x: '\n'.join(x) if isinstance(x, list) else '')  # 리스트가 있는 경우에만
+
+df_all.loc[:, '현황'] = df_all['현황'].apply(lambda x: '\n'.join(x) if isinstance(x, list) else x)
+df_all.loc[:, '대응 방안'] = df_all['대응 방안'].apply(lambda x: '\n'.join(x) if isinstance(x, list) else '')
 
 # 현재 날짜 가져오기
 current_date = datetime.datetime.now().date()
 date_str = current_date.strftime("%Y%m%d")  # 문자열로 변환
-excel_name = f'C:/Spring/project/KosaProject/src/main/resources/static/result_{date_str}.xlsx'
-
+#excel_name = f'C:/Users/Leesumin/3D Objects/Downloads/kosapro-main/kosapro-main/src/main/resources/static/result_{date_str}.xlsx'
+excel_name = f'/root/.ssh/kosapro/src/main/resources/static/result_{date_str}.xlsx'
 # 엑셀 템플릿 복사한 뒤 이름을 현재 날짜와 연관하여 저장하기
-shutil.copy('C:/Spring/project/KosaProject/src/main/resources/static/tmp.xlsx', excel_name)
+try:
+    #shutil.copy('C:/Users/Leesumin/3D Objects/Downloads/kosapro-main/kosapro-main/src/main/resources/static/tmp.xlsx', excel_name)
+    shutil.copy('/root/.ssh/kosapro/src/main/resources/static/tmp.xlsx', excel_name)
+except FileNotFoundError:
+    raise FileNotFoundError("템플릿 파일을 찾을 수 없습니다. 경로를 확인하세요.")
+
 
 # 데이터 프레임 엑셀에 저장하기
-with pd.ExcelWriter('C:/Spring/project/KosaProject/src/main/resources/static/df.xlsx', engine='xlsxwriter') as writer:
-    df_info_all.to_excel(writer, sheet_name='1. 진단대상', startrow=2, header=True, index=False)
-    df_all.to_excel(writer, sheet_name='5. 진단결과 상세', startrow=2, header=True, index=False)
+#with pd.ExcelWriter('C:/Users/Leesumin/3D Objects/Downloads/kosapro-main/kosapro-main/src/main/resources/static/df.xlsx', engine='xlsxwriter') as writer:
+with pd.ExcelWriter('/root/.ssh/kosapro/src/main/resources/static/df.xlsx', engine='xlsxwriter') as writer: 
+   df_info_all.to_excel(writer, sheet_name='1. 진단대상', startrow=2, header=True, index=False)
+   df_all.to_excel(writer, sheet_name='5. 진단결과 상세', startrow=2, header=True, index=False)
 
 # 엑셀 파일 로드
 workbook = load_workbook(excel_name)
-workbookdf = load_workbook('C:/Spring/project/KosaProject/src/main/resources/static/df.xlsx')
-
+#workbookdf = load_workbook('C:/Users/Leesumin/3D Objects/Downloads/kosapro-main/kosapro-main/src/main/resources/static/df.xlsx')
+workbookdf = load_workbook('/root/.ssh/kosapro/src/main/resources/static/df.xlsx')
 # 시트 복제
 dfsheet_1 = workbookdf['1. 진단대상']
 dfsheet_5 = workbookdf['5. 진단결과 상세']
@@ -218,3 +227,5 @@ sheet_0.cell(18, 1).number_format = 'yyyy"." mm"." dd"."'  # 표시 형식 변�
 
 # 변경 사항 저장
 workbook.save(excel_name)
+
+
