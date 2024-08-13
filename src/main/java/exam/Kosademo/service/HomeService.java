@@ -2,6 +2,8 @@ package exam.Kosademo.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class HomeService {
         Map<String, Map<String, Integer>> categorizedResults = getCategorizedResults(checkResults);
         Map<String, Double> categorySecurity = getCategorySecurity(categorizedResults);
         double allSecurity = getAllSecurity(categorizedResults);
-        Map<String, Map<String, Integer>> chart = getChart(checkResults);
+
         Map<String, Object> section1 = getSection1(serverInfoMap, allSecurity);
         Map<String, Object> section2 = getSection2(serverInfoMap);
         List<Map<String, Object>> section3 = getSection3(serverInfoMap, checkResults);
@@ -37,7 +39,6 @@ public class HomeService {
         resultData.put("categorizedResults", categorizedResults);
         resultData.put("categorySecurity", categorySecurity);
         resultData.put("allSecurity", allSecurity);
-        resultData.put("chart", chart);
         resultData.put("report", report);
 
         return resultData;
@@ -79,14 +80,22 @@ public class HomeService {
         return overallTotal == 0 ? 0.0 : Double.parseDouble(String.format("%.2f", (double) totalSafe / overallTotal * 100));
     }
 
-    private Map<String, Map<String, Integer>> getChart(List<Map<String, Object>> checkResults) {
-        Map<String, Map<String, Integer>> chart = new TreeMap<>();
-        for (Map<String, Object> item : checkResults) {
-            String importance = (String) item.get("Importance");
-            String status = (String) item.get("status");
-            chart.computeIfAbsent(importance, k -> new HashMap<>()).merge(status, 1, Integer::sum);
+    private Map<String, Object> getChart(List<Map<String, Object>> checkResults) {
+        Map<String, Object> chartData = new HashMap<>();
+        Map<String, Map<String, Integer>> importanceStatusChart = new HashMap<>();
+        for (Map<String, Object> result : checkResults) {
+            String importance = (String) result.get("Importance");
+            String status = (String) result.get("status");
+            importanceStatusChart.computeIfAbsent(importance, k -> new HashMap<>())
+                    .merge(status, 1, Integer::sum);
         }
-        return chart;
+        chartData.put("chart", importanceStatusChart);
+        Map<String, Map<String, Integer>> categorizedResults = getCategorizedResults(checkResults);
+        Map<String, Double> categorySecurity = getCategorySecurity(categorizedResults);
+        chartData.put("categorySecurity", categorySecurity);
+        double allSecurity = getAllSecurity(categorizedResults);
+        chartData.put("allSecurity", allSecurity);
+        return chartData;
     }
 
     private Map<String, Object> getSection1(Map<String, Object> serverInfoMap, double allSecurity) {
@@ -105,6 +114,7 @@ public class HomeService {
         section2.put("Sub_Category", serverInfoMap.get("Sub_Category"));
         return section2;
     }
+
     private List<Map<String, Object>> getSection3(Map<String, Object> serverInfoMap, List<Map<String, Object>> checkResults) {
         List<Map<String, Object>> section3 = new ArrayList<>();
         for (Map<String, Object> result : checkResults) {
@@ -120,4 +130,6 @@ public class HomeService {
         }
         return section3;
     }
+
+
 }
