@@ -105,7 +105,6 @@ public class HomeService {
         section2.put("Sub_Category", serverInfoMap.get("Sub_Category"));
         return section2;
     }
-
     private List<Map<String, Object>> getSection3(Map<String, Object> serverInfoMap, List<Map<String, Object>> checkResults) {
         List<Map<String, Object>> section3 = new ArrayList<>();
         for (Map<String, Object> result : checkResults) {
