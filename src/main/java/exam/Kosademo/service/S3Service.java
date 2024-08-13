@@ -94,7 +94,6 @@ public class S3Service {
         }
         return Optional.of(latestFile);
     }
-
     public String getPath(String fileName) {
         String ec2Path = "/root/.ssh/kosapro/src/main/resources";
         String resultPath = "result/";
@@ -102,19 +101,14 @@ public class S3Service {
         String classPath = "script/";
         if (fileName == "CentOS6.sh") {
             log.info("call CentOS6");
-            return Paths.get(resultPath, fileName).toString();
+            return Paths.get(localPath, fileName).toString();
         } else if (fileName == "result.json") {
             log.info("call localPath");
-            return Paths.get(classPath, fileName).toString();
+            return Paths.get(localPath, fileName).toString();
         }
         Paths.get(localPath, fileName).toString();
         return localPath;
     }
-
-
-
-
-
     public String executeCommand(Session session, String command) throws JSchException, IOException {
         ChannelExec channel = (ChannelExec) session.openChannel("exec");
         channel.setCommand(command);
@@ -144,8 +138,6 @@ public class S3Service {
         channel.disconnect();
         return output.toString();
     }
-
-
     private void cleanupFiles(Session session, String... fileNames) throws JSchException, IOException {
         StringBuilder command = new StringBuilder("rm");
         for (String fileName : fileNames) {
@@ -173,7 +165,6 @@ public class S3Service {
         }
         return jsonFile.get();
     }
-
     public Map<String, Object> parseJsonFile(File jsonFile) throws IOException {
         try (InputStream inputStream = new FileInputStream(jsonFile)) {
             return objectMapper.readValue(inputStream, new TypeReference<>() {
