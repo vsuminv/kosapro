@@ -1,0 +1,22 @@
+<div th:fragment="result2-2" class="p-8">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold mb-4">보안 점검 결과 차트</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-semibold mb-2">중요도 및 상태 차트</h2>
+                <canvas id="importanceStatusChart"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-lg font-semibold mb-2">카테고리별 보안 점수</h2>
+                <canvas id="categorySecurityChart"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow col-span-1 md:col-span-2">
+                <h2 class="text-lg font-semibold mb-2">전체 보안 점수</h2>
+                <div id="allSecurityScore" class="text-4xl font-bold text-center"
+                     th:text="${allSecurity + '%'}"
+                     th:style="${'color: ' + (allSecurity >= 90 ? '#4BC0C0' : allSecurity >= 70 ? '#36A2EB' : allSecurity >= 50 ? '#FFCE56' : '#FF6384')}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
