@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const statusElements = document.querySelectorAll('.status');
     const checkResults = /*[[${checkResults}]]*/ [];
     const categorySecurity = /*[[${categorySecurity}]]*/ {};
-    const allSecurity = /*[[${allSecurity}]]*/ 0;
+
 
     createImportanceStatusChart(processImportanceStatusData(checkResults));
     createCategorySecurityChart(categorySecurity);
-    displayAllSecurityScore(allSecurity);
+
 
     function processImportanceStatusData(checkResults) {
         const chart = {};
@@ -76,13 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    function displayAllSecurityScore(allSecurity) {
-        const scoreElement = document.getElementById('allSecurityScore');
-        scoreElement.textContent = `${allSecurity}%`;
-        scoreElement.style.color = getScoreColor(allSecurity);
-    }
-
     function getColor(status) {
         switch (status) {
             case '[양호]':
