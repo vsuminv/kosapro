@@ -1,5 +1,6 @@
 package exam.Kosademo.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import exam.Kosademo.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,13 +16,16 @@ import java.util.*;
 public class HomeController {
 
     private final HomeService homeService;
-
+    ObjectMapper objectMapper = new ObjectMapper();
     @GetMapping("/result")
     public String getCheckResult(Model model) throws IOException {
         Map<String, Object> checkResultData = homeService.getCheckResultData();
         Map<String, Map<String, Integer>> importanceStatusData = processImportanceStatusData(checkResultData);
+        String categorySecurityJson = objectMapper.writeValueAsString(checkResultData.get("categorySecurity"));
         model.addAttribute("importanceStatusData", importanceStatusData);
+        model.addAttribute("categorySecurityJson", categorySecurityJson);
         model.addAllAttributes(checkResultData);
+
         return "pages/main";
     }
 
