@@ -1,5 +1,6 @@
 package exam.Kosademo.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -14,11 +15,10 @@ import java.util.*;
 public class HomeService {
 
     private final S3Service s3Service;
-
+    private final ObjectMapper objectMapper;
     public Map<String, Object> getCheckResultData() throws IOException {
         File jsonFile = s3Service.downloadLatestJsonFile();
         Map<String, Object> jsonMap = s3Service.parseJsonFile(jsonFile);
-
         Map<String, Object> serverInfoMap = (Map<String, Object>) jsonMap.get("Server_Info");
         List<Map<String, Object>> checkResults = (List<Map<String, Object>>) jsonMap.get("Check_Results");
 
@@ -40,7 +40,6 @@ public class HomeService {
         resultData.put("categorySecurity", categorySecurity);
         resultData.put("allSecurity", allSecurity);
         resultData.put("report", report);
-
         return resultData;
     }
 
