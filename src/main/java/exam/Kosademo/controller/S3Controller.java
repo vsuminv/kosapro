@@ -35,8 +35,6 @@ public class S3Controller {
     private String bucketName;
     @Value("${centos.script.path}")
     private String centosScriptPath;
-    @Value("${json.file.path}")
-    private String ec2Path;
     @Value("${result.json.path}")
     private String resultJsonPath;
     @Value("${ssh.script.path}")
@@ -52,7 +50,7 @@ public class S3Controller {
         try {
             s3.runCheck(username, password, ipAddress, port, scriptPath, jsonPath);
             if (s3.findLatestJsonFile().isEmpty()) {
-                log.info("json파일 없음 {}",ec2Path);
+                log.info("json파일 없음 {}");
                 return new RedirectView();
             }
             File file = s3.findLatestJsonFile().get();

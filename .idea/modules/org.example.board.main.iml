@@ -5,4 +5,9 @@
       <configuration sdkName="Python 3.12" />
     </facet>
   </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Python 3.12 interpreter library" level="application" />
+  </component>
 </module>
