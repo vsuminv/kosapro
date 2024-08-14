@@ -31,7 +31,6 @@ public class HomeController {
         for (Map<String, Object> result : checkResults) {
             String importance = (String) result.get("Importance");
             String status = (String) result.get("status");
-
             importanceStatusData.computeIfAbsent(importance, k -> new HashMap<>())
                     .merge(status, 1, Integer::sum);
         }

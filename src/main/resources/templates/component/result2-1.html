@@ -42,20 +42,37 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script th:inline="javascript">
     document.addEventListener('DOMContentLoaded', function () {
-        const cells = document.querySelectorAll('#result2_1 tr');
-        let categoryCell;
-        let categorys;
+        const rows = document.querySelectorAll('#result2_1 tr');
+        let currentCategory = '';
+        let lastRowOfCategory = null;
         const importanceElements = document.querySelectorAll('.importance');
         const statusElements = document.querySelectorAll('.status');
         // const subCategoryElements = document.querySelectorAll('.sub-category-cell');
 
-        cells.forEach((row, index) => {
-
+        rows.forEach((row, index) => {
             const categoryCell = row.querySelector('.category-cell');
             const categoryText = categoryCell.textContent.trim();
-            const categoryNum = categoryText.split('.')[0];
+            const categoryNumber = categoryText.split('.')[0];
 
-            if(categoryNum)
+            if (categoryNumber !== currentCategory) {
+                // 새로운 카테고리의 시작
+                if (lastRowOfCategory) {
+                    // 이전 카테고리의 마지막 행에 굵은 밑줄 추가
+                    lastRowOfCategory.classList.add('border-b-4', 'border-gray-300');
+                }
+                currentCategory = categoryNumber;
+            }
+
+            // 현재 행을 해당 카테고리의 마지막 행으로 설정
+            lastRowOfCategory = row;
+
+            // 마지막 행 처리 (마지막 카테고리의 마지막 행)
+            if (index === rows.length - 1) {
+                lastRowOfCategory.classList.add('border-b-4', 'border-gray-300');
+            }
+
+            // 숫자 제거 (옵션)
+            categoryCell.textContent = categoryText.replace(/^\d+\.\s*/, '');
         });
 
 
@@ -72,7 +89,7 @@
             cell.textContent = removeNumber(cell.textContent);
         });
 
-        importanceElements.forEach(element => {
+        rows.forEach(element => {
             const importance = element.textContent;
             let textColor;
             let transformText;
@@ -95,7 +112,7 @@
             element.textContent = transformText;
         });
 
-        statusElements.forEach(element => {
+        rows.forEach(element => {
             const status = element.textContent;
             let textColor = '';
             let transformText = '';
