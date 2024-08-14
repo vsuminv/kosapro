@@ -1,6 +1,7 @@
 <div th:fragment="result1-2" class="p-8">
 
 
+
 <div class="bg-white p-4 rounded-lg shadow col-span-1 md:col-span-2">
     <div class="grid-cols-1 font-bold ">
     <div id="allSecurityScore" th:text="${ allSecurity + '점'}" class="text-4xl text-center"
@@ -20,6 +21,9 @@
     <script th:inline="javascript">
     /*<![CDATA[*/
     document.addEventListener('DOMContentLoaded', function () {
+
+
+
         // 기존 차트 생성 코드 ...
         const importanceStatusData = /*[[${importanceStatusData}]]*/ {};
         const importanceStatusCtx = document.getElementById('importanceStatusChart').getContext('2d');
