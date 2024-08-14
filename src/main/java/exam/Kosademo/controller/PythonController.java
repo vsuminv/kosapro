@@ -1,47 +1,62 @@
 package exam.Kosademo.controller;
 
-import exam.Kosademo.service.PythonService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.*;
-@Slf4j
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Controller
-@RequiredArgsConstructor
 public class PythonController {
-
-    private final PythonService pythonService;
-
-    @Value("${python.script.path}")
-    private String pythonScriptPath;
-
-    @Value("${python.excel.path}")
-    private String excelPath;
 
     @GetMapping("/run-python")
     public ResponseEntity<InputStreamResource> runPythonScript() {
         try {
-            pythonService.executePythonScript(pythonScriptPath);
-            File excelFile = pythonService.getLatestExcelFile(excelPath);
+            // Python 스크립트 실행
+            //ProcessBuilder processBuilder = new ProcessBuilder("python3", "/root/.ssh/kosapro/src/main/resources/static/make_result.py");
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "C:\\Users\\Leesumin\\3D Objects\\Downloads\\kosapro-han.featt\\kosapro-han.featt\\src\\main\\resources\\static\\make_result.py");
+            processBuilder.redirectErrorStream(true);
+            Process process = processBuilder.start();
 
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(excelFile));
+            // Python 스크립트의 출력 읽기
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            StringBuilder output = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                throw new RuntimeException("Python script execution failed with exit code " + exitCode + "\n" + output);
+            }
 
+            // 생성된 엑셀 파일 이름
+            String excelFileName = "result_" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + ".xlsx";
+            File file = new File("C:/Users/Leesumin/3D Objects/Downloads/kosapro-han.featt/kosapro-han.featt/src/main/resources/static/" + excelFileName);
+            //File file = new File("/root/.ssh/kosapro/src/main/resources/static/" + excelFileName);
+            if (!file.exists()) {
+                throw new FileNotFoundException("Generated Excel file not found: " + excelFileName);
+            }
+
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+            // 파일 다운로드 응답 반환
             return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + excelFile.getName())
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + excelFileName)
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(resource);
 
         } catch (IOException | InterruptedException e) {
-            log.error("Error during Python script execution", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(new InputStreamResource(new ByteArrayInputStream(e.getMessage().getBytes())));
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(new InputStreamResource(new ByteArrayInputStream(e.getMessage().getBytes())));
         }
     }
 }
