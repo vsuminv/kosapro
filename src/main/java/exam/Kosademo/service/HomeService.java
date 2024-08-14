@@ -74,7 +74,22 @@ public class HomeService {
         return overallTotal == 0 ? 0.0 : Double.parseDouble(String.format("%.2f", (double) totalSafe / overallTotal * 100));
     }
 
+    private Map<String, Object> getChart(List<Map<String, Object>> checkResults) {
+        Map<String, Object> chartData = new HashMap<>();
+        Map<String, Map<String, Integer>> importanceStatusChart = new HashMap<>();
+        for (Map<String, Object> result : checkResults) {
+            String importance = (String) result.get("Importance");
+            String status = (String) result.get("status");
+            importanceStatusChart.computeIfAbsent(importance, k -> new HashMap<>())
+                    .merge(status, 1, Integer::sum);
         }
+        chartData.put("chart", importanceStatusChart);
+        Map<String, Map<String, Integer>> categorizedResults = getCategorizedResults(checkResults);
+        Map<String, Double> categorySecurity = getCategorySecurity(categorizedResults);
+        chartData.put("categorySecurity", categorySecurity);
+        double allSecurity = getAllSecurity(categorizedResults);
+        chartData.put("allSecurity", allSecurity);
+        return chartData;
     }
 
     private Map<String, Object> getSection1(Map<String, Object> serverInfoMap, double allSecurity) {

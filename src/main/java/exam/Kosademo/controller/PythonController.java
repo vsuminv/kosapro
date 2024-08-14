@@ -18,7 +18,8 @@ public class PythonController {
     public ResponseEntity<InputStreamResource> runPythonScript() {
         try {
             // Python 스크립트 실행
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "C:/Users/Leesumin/3D Objects/Downloads/kosapro-main/kosapro-main/src/main/resources/static/make_result.py");
+            //ProcessBuilder processBuilder = new ProcessBuilder("python3", "/root/.ssh/kosapro/src/main/resources/static/make_result.py");
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "C:\\Users\\Leesumin\\3D Objects\\Downloads\\kosapro-han.featt\\kosapro-han.featt\\src\\main\\resources\\static\\make_result.py");
             processBuilder.redirectErrorStream(true);
             Process process = processBuilder.start();
 
@@ -36,8 +37,8 @@ public class PythonController {
 
             // 생성된 엑셀 파일 이름
             String excelFileName = "result_" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + ".xlsx";
-            File file = new File("C:/Users/Leesumin/3D Objects/Downloads/kosapro-main/kosapro-main/src/main/resources/static/" + excelFileName);
-
+            File file = new File("C:/Users/Leesumin/3D Objects/Downloads/kosapro-han.featt/kosapro-han.featt/src/main/resources/static/" + excelFileName);
+            //File file = new File("/root/.ssh/kosapro/src/main/resources/static/" + excelFileName);
             if (!file.exists()) {
                 throw new FileNotFoundException("Generated Excel file not found: " + excelFileName);
             }
